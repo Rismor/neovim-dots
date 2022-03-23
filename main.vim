@@ -201,8 +201,6 @@ let g:gruvbox_contrast_dark="hard"
 let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json']
 let g:airline#extensions#branch#enabled=1
 
-" color gruvbox
-"asd" 
 
 " =================================================================================
 "            _      _                        _         _    _
@@ -218,7 +216,6 @@ ab rarr ↳
 ab arr →
 ab sub <sub></sub><Esc>2ba
 ab sup <sup></sup><Esc>2ba
-
 
 
 set path+=**
