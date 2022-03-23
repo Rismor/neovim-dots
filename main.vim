@@ -221,3 +221,9 @@ ab sup <sup></sup><Esc>2ba
 
 
 
+set path+=**
+set wildmenu
+
+
+
+                      
