@@ -218,3 +218,6 @@ ab rarr ↳
 ab arr →
 ab sub <sub></sub><Esc>2ba
 ab sup <sup></sup><Esc>2ba
+
+
+let g:doom_one_terminal_colors = v:true

@@ -58,6 +58,10 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
+	-- use({
+	-- 	"romgrk/doom-one.vim",
+	-- 	as = "doom-one-one",
+	-- })
 
 	-- " Expanded Syntax Higlight Support
 	use("fladson/vim-kitty")
