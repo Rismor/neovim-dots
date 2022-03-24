@@ -57,7 +57,7 @@ autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
 autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 autocmd InsertEnter * norm zz
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
-autocmd BufWritepPre *.py lua vim.lsp.buf.formatting()
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
 
 
 
@@ -223,5 +223,5 @@ set path+=**
 set wildmenu
 
 
-
-                      
+nnoremap K ddkP
+nnoremap J ddp
