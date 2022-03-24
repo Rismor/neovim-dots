@@ -42,10 +42,12 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 set laststatus=2
 set mouse =a
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h18
-set guicursor+=i:ver100-iCursor
+set guifont=CaskaydiaCove\ Nerd\ Font:h15 
+" set guifont=CaskaydiaCove\ Nerd\ Font:h18
+set guicursor+=i:ver100-iCursor 
 set hidden
 set ignorecase
+
 
 " highlight Normal ctermbg=none
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -195,7 +197,6 @@ let g:dashboard_custom_shortcut={
 \ }
 let g:gruvbox_bold=1
 let g:gruvbox_italic =1
-let g:gruvbox_italic =1
 let g:gruvbox_guisp_fallback =1
 let g:airline_theme="gruvbox"
 let g:gruvbox_contrast_dark="hard"
@@ -215,6 +216,7 @@ colorscheme vscode
 " /_/    \_\|_.__/ |_.__/ |_|   \___|  \_/  |_| \__,_| \__||_| \___/ |_| |_||___/
 "
 " =================================================================================
+" asdasda
 
 ab rarr ↳
 ab arr →
