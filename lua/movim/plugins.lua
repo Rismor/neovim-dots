@@ -86,6 +86,7 @@ return packer.startup(function(use)
 		},
 	})
 	use("akinsho/toggleterm.nvim")
+	use("tomasiser/vim-code-dark")
 	use({
 		"junegunn/fzf",
 		run = "fzf#install()",

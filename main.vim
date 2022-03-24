@@ -47,7 +47,6 @@ set guicursor+=i:ver100-iCursor
 set hidden
 set ignorecase
 
-colorscheme vscode
 " highlight Normal ctermbg=none
 au BufRead,BufNewFile *.md set filetype=markdown
 
@@ -204,6 +203,7 @@ let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr',
 let g:airline#extensions#branch#enabled=1
 let g:vscode_style = "dark"
 let g:vscode_italic_comment = 1
+colorscheme vscode
 
 
 " =================================================================================
