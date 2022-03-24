@@ -47,8 +47,8 @@ set guicursor+=i:ver100-iCursor
 set hidden
 set ignorecase
 
-colorscheme doom-one
-highlight Normal ctermbg=none
+colorscheme codedark
+" highlight Normal ctermbg=none
 au BufRead,BufNewFile *.md set filetype=markdown
 
 
@@ -57,6 +57,7 @@ autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
 autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 autocmd InsertEnter * norm zz
 autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
+autocmd BufWritepPre *.py lua vim.lsp.buf.formatting()
 
 
 
@@ -139,7 +140,7 @@ noremap <C-k> <C-p>
 " ===================================================="
 
 let g:markdown_fenced_languages = ['cpp', 'sql', 'html', 'python', 'bash=sh']
-let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_new_list_item_indent = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
@@ -158,7 +159,7 @@ let g:airline_theme='deus'
 let g:NERDTreeShowHidden = 1
 let g:rustfmt_autosave = 1
 let g:doom_one_terminal_colors = v:true
-let g:neovide_transparency=0.9
+" let g:neovide_transparency=0.9
 let g:neovide_cursor_vfx_mode = "sonicboom"
 let g:neovide_refresh_rate=240
 let g:dashboard_default_executive ='fzf'
