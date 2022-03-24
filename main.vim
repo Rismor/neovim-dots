@@ -47,7 +47,7 @@ set guicursor+=i:ver100-iCursor
 set hidden
 set ignorecase
 
-colorscheme codedark
+colorscheme vscode
 " highlight Normal ctermbg=none
 au BufRead,BufNewFile *.md set filetype=markdown
 
@@ -108,6 +108,7 @@ nnoremap <leader>gs :G<CR>
 nnoremap <leader>gc :GCheckout<CR>
 " nnoremap  zz :normal zz<CR> 
 nnoremap `` :Marks<CR>
+nnoremap <leader>lc :!g++ %:t && ./a.out<CR>
 
 inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
 imap <C-j> <C-n>
@@ -201,6 +202,8 @@ let g:airline_theme="gruvbox"
 let g:gruvbox_contrast_dark="hard"
 let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json']
 let g:airline#extensions#branch#enabled=1
+let g:vscode_style = "dark"
+let g:vscode_italic_comment = 1
 
 
 " =================================================================================
