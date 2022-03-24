@@ -51,6 +51,7 @@ return packer.startup(function(use)
 	use("vim-airline/vim-airline-themes")
 	use("morhetz/gruvbox")
 	use("NTBBloodbath/doom-one.vim")
+	use("tomasiser/vim-code-dark")
 	use("glepnir/dashboard-nvim")
 	use("ryanoasis/vim-devicons")
 	use({
