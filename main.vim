@@ -228,5 +228,4 @@ set path+=**
 set wildmenu
 
 
-nnoremap K ddkP
-nnoremap J ddp
+set foldexpr="nvim_treesitter#foldexpr()" 

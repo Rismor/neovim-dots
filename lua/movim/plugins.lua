@@ -130,7 +130,22 @@ return packer.startup(function(use)
 	use("stsewd/fzf-checkout.vim")
 	use("junegunn/goyo.vim")
 
-	use("ianding1/leetcode.vim")
+	use({
+		"nvim-neorg/neorg",
+		config = function()
+			require("neorg").setup({
+				load = {
+					["core.defaults"] = {},
+					["core.export"] = {},
+					["core.export.markdown"] = {
+						config = {
+							extensions = "all",
+						},
+					},
+				},
+			})
+		end,
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
