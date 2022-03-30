@@ -1,4 +1,5 @@
 .git
 plugin/packer_compiled.lua
 .luarc.json
+.DS_Store
 
