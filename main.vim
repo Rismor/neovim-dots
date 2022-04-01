@@ -42,7 +42,7 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 set laststatus=2
 set mouse =a
-set guifont=CaskaydiaCove\ Nerd\ Font:h15 
+set guifont=CaskaydiaCove\ Nerd\ Font:h15
 " set guifont=CaskaydiaCove\ Nerd\ Font:h18
 set guicursor+=i:ver100-iCursor 
 set hidden
@@ -83,15 +83,12 @@ nnoremap <leader>. :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
 nnoremap gd        :lua vim.lsp.buf.definition()<CR>
 
-nnoremap <leader>l :lnext<CR>
-nnoremap <leader>h :lprev<CR>
 nnoremap <CR> :noh<CR><CR>
 nnoremap <leader>] :bnext<CR>
 nnoremap <leader>[ :bprev<CR>
 nnoremap <leader>c :bd<CR>
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>D :Dashboard<CR>
-nnoremap <leader>b :!cargo build<CR>
 nnoremap <leader><Tab> <C-^>
 nnoremap <C-p> :Rg<CR>
 nnoremap <leader>p "+p
@@ -199,7 +196,7 @@ let g:gruvbox_bold=1
 let g:gruvbox_italic =1
 let g:gruvbox_guisp_fallback =1
 let g:airline_theme="gruvbox"
-let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_contrast_dark="soft"
 let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json']
 let g:airline#extensions#branch#enabled=1
 let g:vscode_style = "dark"
@@ -227,5 +224,14 @@ ab sup <sup></sup><Esc>2ba
 set path+=**
 set wildmenu
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr() 
+nnoremap J ddp 
+nnoremap K ddkP
 
-set foldexpr="nvim_treesitter#foldexpr()" 
+
+
+nnoremap <leader>b :!cargo build<CR>
+autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
+autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
+

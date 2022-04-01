@@ -47,9 +47,14 @@ return packer.startup(function(use)
 
 	-- Eye Candy:
 
-	use("vim-airline/vim-airline")
-	use("vim-airline/vim-airline-themes")
+	-- use("vim-airline/vim-airline")
+	-- use("vim-airline/vim-airline-themes")
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+	})
 	use("morhetz/gruvbox")
+	-- use({ "ellisonleao/gruvbox.nvim" })
 	use("NTBBloodbath/doom-one.vim")
 	use("Mofiqul/vscode.nvim")
 	use("glepnir/dashboard-nvim")
@@ -146,6 +151,8 @@ return packer.startup(function(use)
 			})
 		end,
 	})
+
+	use("lervag/vimtex")
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
