@@ -102,8 +102,9 @@ nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
 nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 nnoremap <C-c> "+y
 nnoremap <Tab> za
-nnoremap <leader>gs :G<CR>
-nnoremap <leader>gc :GCheckout<CR>
+" nnoremap <leader>gs :G<CR>
+" nnoremap <leader>gc :GCheckout<CR>
+nnoremap <leader>gs :Neogit<CR>
 " nnoremap  zz :normal zz<CR> 
 nnoremap `` :Marks<CR>
 nnoremap <leader>lc :!g++ %:t && ./a.out<CR>
