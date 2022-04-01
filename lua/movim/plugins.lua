@@ -112,7 +112,8 @@ return packer.startup(function(use)
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
-	use("tpope/vim-fugitive")
+	-- use("tpope/vim-fugitive")
+  use("TimUntersberger/neogit")
 	use("stsewd/fzf-checkout.vim")
 
 	use({
