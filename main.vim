@@ -231,7 +231,7 @@ nnoremap K ddkP
 
 
 
-nnoremap <leader>b :!cargo build<CR>
+nnoremap <leader>b :Buffers<CR>
 autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
 autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
 
