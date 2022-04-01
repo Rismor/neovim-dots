@@ -12,6 +12,5 @@ bufferline.setup({
 		buffer_close_icon = "",
 		modified_icon = "●",
 		close_icon = "",
-
 	},
 })
