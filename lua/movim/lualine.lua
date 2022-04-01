@@ -5,12 +5,11 @@ end
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		-- theme = "codedark",
 		theme = "auto",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
-		disabled_filetypes = {},
 		always_divide_middle = true,
+		disabled_filetypes = { "NVimTree", "dashboard" },
 	},
 	sections = {
 		lualine_a = { "mode" },
