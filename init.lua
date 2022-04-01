@@ -7,6 +7,7 @@ require("movim.treesitter")
 require("movim.toggleterm")
 require("movim.cmp")
 require("movim.lualine")
+require("movim.bufferline")
 
 vim.diagnostic.config({
 	virtual_text = false,
