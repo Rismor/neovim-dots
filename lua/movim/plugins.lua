@@ -46,15 +46,11 @@ return packer.startup(function(use)
 	-- USER PLUGINS --
 
 	-- Eye Candy:
-
-	-- use("vim-airline/vim-airline")
-	-- use("vim-airline/vim-airline-themes")
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
 	})
 	use("morhetz/gruvbox")
-	-- use({ "ellisonleao/gruvbox.nvim" })
 	use("NTBBloodbath/doom-one.vim")
 	use("Mofiqul/vscode.nvim")
 	use("glepnir/dashboard-nvim")
@@ -67,13 +63,11 @@ return packer.startup(function(use)
 
 	-- " Expanded Syntax Higlight Support
 	use("fladson/vim-kitty")
-	use("mboughaba/i3config.vim")
 	use("rust-lang/rust.vim")
 
 	-- " Vim Enhancement Plugins
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
-	use("tpope/vim-speeddating")
 	use("justinmk/vim-sneak")
 	use("airblade/vim-rooter")
 	use("preservim/vim-markdown")
@@ -85,17 +79,11 @@ return packer.startup(function(use)
 		},
 	})
 	use("akinsho/toggleterm.nvim")
-	use("tomasiser/vim-code-dark")
 	use({
 		"junegunn/fzf",
 		run = "fzf#install()",
 	})
 	use("junegunn/fzf.vim")
-	use({
-		"iamcco/markdown-preview.nvim",
-		ft = "markdown",
-		run = "cd app && yarn install",
-	})
 	-- " LSP Plugins
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/lsp_extensions.nvim")
@@ -104,7 +92,6 @@ return packer.startup(function(use)
 	use("williamboman/nvim-lsp-installer")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("L3MON4D3/LuaSnip")
-	use("APZelos/blamer.nvim")
 	use({
 		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 		config = function()
@@ -127,7 +114,6 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive")
 	use("stsewd/fzf-checkout.vim")
-	use("junegunn/goyo.vim")
 
 	use({
 		"nvim-neorg/neorg",
