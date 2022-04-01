@@ -4,8 +4,8 @@ if not status_ok then
 end
 toggleterm.setup({
 	open_mapping = [[<c-\>]],
-	shade_terminals = true,
-	shading_factor = "3",
+	shade_terminals = false,
+	shading_factor = "1",
 	direction = "horizontal",
 	close_on_exit = true,
 	shell = zsh,
@@ -13,5 +13,9 @@ toggleterm.setup({
 		border = "curved",
 		width = 100,
 		height = 50,
+	},
+	higlights = {
+		border = "#252526",
+		background = "Normal",
 	},
 })
