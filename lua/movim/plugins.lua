@@ -64,10 +64,6 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
-	-- use({
-	-- 	"romgrk/doom-one.vim",
-	-- 	as = "doom-one-one",
-	-- })
 
 	-- " Expanded Syntax Higlight Support
 	use("fladson/vim-kitty")
@@ -76,13 +72,11 @@ return packer.startup(function(use)
 
 	-- " Vim Enhancement Plugins
 	use("tpope/vim-surround")
-	-- use("tpope/vim-markdown")
 	use("tpope/vim-commentary")
 	use("tpope/vim-speeddating")
 	use("justinmk/vim-sneak")
 	use("airblade/vim-rooter")
 	use("preservim/vim-markdown")
-	-- use 'preservim/nerdtree'
 	use("machakann/vim-highlightedyank")
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -152,7 +146,8 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use("lervag/vimtex")
+	use("akinsho/bufferline.nvim")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

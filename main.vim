@@ -224,8 +224,8 @@ ab sup <sup></sup><Esc>2ba
 set path+=**
 set wildmenu
 
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr() 
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr() 
 nnoremap J ddp 
 nnoremap K ddkP
 
