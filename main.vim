@@ -225,8 +225,6 @@ colorscheme vscode
 
 ab rarr ↳
 ab arr →
-ab sub <sub></sub><Esc>2ba
-ab sup <sup></sup><Esc>2ba
 
 
 set path+=**
@@ -245,3 +243,8 @@ autocmd FileType *.py nnoremap <leader>lr :!python3 %:t
 set iskeyword-=_ 
 
 nnoremap <leader>cds :e ~/Documents/School/<CR>
+
+inoremap __ $_{}$<Esc>hi
+inoremap ^^ $^{}$<Esc>hi
+
+nnoremap <leader>m :make<Cr>
