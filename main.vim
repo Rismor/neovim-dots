@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 filetype plugin on
 let mapleader = "\<Space>"
@@ -144,7 +143,7 @@ let g:vim_markdown_new_list_item_indent = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
-" let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled = 1
 let g:mkdp_refresh_slow=1
 let g:mkdp_markdown_css='~/.local/lib/github-markdown.css'
 let g:airline_left_sep = ''
@@ -184,6 +183,14 @@ let g:dashboard_custom_header =<< trim END
 \   _-'                                                                `-_   /
  `''                                                                      ``'
 END
+let g:dashboard_custom_header = [
+\ ' ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗',
+\ ' ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║',
+\ ' ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║',
+\ ' ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║',
+\ ' ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║',
+\ ' ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝',
+\]
 let g:dashboard_custom_shortcut={
 \ 'last_session'       : 'SPC s l',
 \ 'find_history'       : 'SPC f r',
@@ -235,4 +242,6 @@ nnoremap K ddkP
 nnoremap <leader>b :Buffers<CR>
 autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
 autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
+set iskeyword-=_ 
 
+nnoremap <leader>cds :e ~/Documents/School/<CR>
