@@ -8,9 +8,17 @@ if not snip_status_ok then
 	return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+local check_backspace = function()
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+end
 
---   פּ ﯟ   some other good icons
+
+
+require("luasnip/loaders/from_vscode").lazy_load()
+require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+require('luasnip').filetype_extend("javascript", { "html" })
+
 local kind_icons = {
 	Text = "",
 	Method = "m",
@@ -59,7 +67,21 @@ cmp.setup({
 		-- },
 		-- Accept currently selected item. If none selected, `select` first item.
 		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<C-e>"] = cmp.mapping.confirm({ select = true }),
+		-- ["<C-e>"] = cmp.mapping.confirm({ select = true }),
+		["<C-e>"] = cmp.mapping(function(fallback)
+      if luasnip.expandable() then
+        luasnip.expand()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      elseif check_backspace() then
+        fallback()
+      else
+        fallback()
+      end
+    end, {
+      "i",
+      "s",
+    }),
 
 		-- ["<Tab>"] = cmp.mapping.confirm { select = true },
 		["<C-Space>"] = cmp.mapping.confirm({ select = true }),
@@ -83,20 +105,20 @@ cmp.setup({
 			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+				nvim_lsp = "[LSP]",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
 	sources = {
-		{ name = "cmp_tabnine" },
-		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "cmp_tabnine" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
