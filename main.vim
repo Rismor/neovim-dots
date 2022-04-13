@@ -241,6 +241,7 @@ autocmd FileType *.py nnoremap <leader>lr :!python3 %:t
 set iskeyword-=_ 
 
 nnoremap <leader>cds :e ~/Documents/School/<CR>
+nnoremap <leader>cds :e ~/Documents/Development/<CR>
 
 inoremap __ $_{}$<Esc>hi
 inoremap ^^ $^{}$<Esc>hi
