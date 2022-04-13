@@ -9,5 +9,3 @@ require("movim.toggleterm")
 require("movim.cmp")
 require("movim.lualine")
 require("movim.bufferline")
-require("movim.luasnip")
-
