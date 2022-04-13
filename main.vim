@@ -56,8 +56,6 @@ let &t_ut=''
 autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
 autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 autocmd InsertEnter * norm zz
-autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting()
 
 
 
@@ -108,7 +106,7 @@ nnoremap <leader>gs :Neogit<CR>
 nnoremap `` :Marks<CR>
 nnoremap <leader>lc :!g++ %:t && ./a.out<CR>
 
-inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
+inoremap <expr> <Tab> search('\%#[]>)}$''"`]', 'n') ? '<Right>' : '<Tab>'
 imap <C-j> <C-n>
 inoremap <C-k> <C-p>
 inoremap <C-v> <Esc>"+p
