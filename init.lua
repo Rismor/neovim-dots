@@ -9,11 +9,12 @@ require("movim.toggleterm")
 require("movim.cmp")
 require("movim.lualine")
 require("movim.bufferline")
+require("movim.luasnip")
 
 vim.diagnostic.config({
-	virtual_text = false,
+  virtual_text = false,
 })
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics,
-	{ update_in_insert = false }
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  { update_in_insert = false }
 )

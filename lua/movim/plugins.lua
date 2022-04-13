@@ -116,6 +116,7 @@ return packer.startup(function(use)
 	-- use("tpope/vim-fugitive")
 	use("TimUntersberger/neogit")
 	use("stsewd/fzf-checkout.vim")
+	use("rafamadriz/friendly-snippets")
 
 	use({
 		"nvim-neorg/neorg",
