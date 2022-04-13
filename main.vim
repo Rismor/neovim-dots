@@ -6,8 +6,6 @@ let mapleader = "\<Space>"
 filetype plugin indent on
 syntax on
 
-" God fucking help me.
-" lua require 'movim.spag'
 
 " ===========================================================  "
 " __      ___              ____        _   _                   "
@@ -41,11 +39,13 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 set laststatus=2
 set mouse =a
-set guifont=CaskaydiaCove\ Nerd\ Font:h15
-" set guifont=CaskaydiaCove\ Nerd\ Font:h18
+set guifont=Cascadia\ Code,CaskaydiaCove\ Nerd\ Font,Apple\ Color\ Emoji:h15
 set guicursor+=i:ver100-iCursor 
 set hidden
 set ignorecase
+
+
+
 
 
 " highlight Normal ctermbg=none
@@ -58,6 +58,8 @@ autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 autocmd InsertEnter * norm zz
 
 
+
+"asd 
 
 
 " ================================================ "
@@ -210,6 +212,7 @@ let g:vscode_italic_comment = 1
 colorscheme vscode
 
 
+
 " =================================================================================
 "            _      _                        _         _    _
 "     /\    | |    | |                      (_)       | |  (_)
@@ -241,7 +244,7 @@ autocmd FileType *.py nnoremap <leader>lr :!python3 %:t
 set iskeyword-=_ 
 
 nnoremap <leader>cds :e ~/Documents/School/<CR>
-nnoremap <leader>cds :e ~/Documents/Development/<CR>
+nnoremap <leader>cdd :e ~/Documents/Development/<CR>
 
 inoremap __ $_{}$<Esc>hi
 inoremap ^^ $^{}$<Esc>hi
