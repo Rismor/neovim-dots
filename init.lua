@@ -1,4 +1,3 @@
-require("impatient")
 require("movim.plugins")
 vim.cmd("source ~/.config/nvim/main.vim")
 require("movim.nvim-tree")

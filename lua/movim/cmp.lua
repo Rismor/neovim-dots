@@ -1,4 +1,6 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
+
+
 if not cmp_status_ok then
 	return
 end
@@ -8,12 +10,12 @@ if not snip_status_ok then
 	return
 end
 
+
+
 local check_backspace = function()
   local col = vim.fn.col "." - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
-
-
 
 require("luasnip/loaders/from_vscode").lazy_load()
 require('luasnip').filetype_extend("javascript", { "javascriptreact" })
@@ -123,9 +125,6 @@ cmp.setup({
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
-	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 	},
 	experimental = {
 		ghost_text = false,
