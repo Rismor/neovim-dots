@@ -3,18 +3,25 @@ local function get_font()
 end
 
 function UF(value)
-  vim.opt.guifont = string.sub(get_font(), 1, -3) .. value
+  local s = get_font()
+  local  i,j = string.find(string.reverse(s),"h" )
+  vim.opt.guifont = string.sub(get_font(), 1, 0-i) .. value
 end
 
 function Increment()
-  local font = string.sub(get_font(), -2, -1)
+  local s = get_font()
+  local  i,j = string.find(string.reverse(s),"h" )
+  local font = string.sub(get_font(), 1-i, string.len(s))
+  print(font)
   local font_num = tonumber(font) + 1
   font = tostring(font_num)
   UF(font)
 end
 
 function Decrement()
-  local font = string.sub(get_font(), -2, -1)
+  local s = get_font()
+  local  i,j = string.find(string.reverse(s),"h" )
+  local font = string.sub(get_font(), 1-i, string.len(s))
   local font_num = tonumber(font) - 1
   font = tostring(font_num)
   UF(font)
@@ -25,3 +32,7 @@ function Print_font()
   print(font)
 end
 
+-- local s = get_font()
+-- local  i,j = string.find(string.reverse(s),"h" )
+-- s = string.sub(s,1,0-i) .. "15"
+-- print(s)
