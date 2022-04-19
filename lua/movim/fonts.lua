@@ -20,4 +20,8 @@ function Decrement()
   UF(font)
 end
 
-Increment()
+function Print_font()
+  local font = string.sub(get_font(), -2, -1)
+  print(font)
+end
+

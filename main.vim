@@ -252,4 +252,6 @@ inoremap ^^ $^{}$<Esc>hi
 nnoremap <leader>m :make<Cr>
 noremap <C-=> :lua Increment()<CR>
 noremap <C--> :lua Decrement()<CR>
+noremap <C-0> :lua Print_font()<CR> 
+
 
