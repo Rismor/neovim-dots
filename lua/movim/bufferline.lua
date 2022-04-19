@@ -6,7 +6,7 @@ end
 bufferline.setup({
     options = {
         buffer_close_icon = "",
-        close_command = "Bdelete %d",
+        close_command = "bdelete %d",
         close_icon = "",
         indicator_icon = " ",
         left_trunc_marker = "",
