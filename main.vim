@@ -250,3 +250,6 @@ inoremap __ $_{}$<Esc>hi
 inoremap ^^ $^{}$<Esc>hi
 
 nnoremap <leader>m :make<Cr>
+noremap <C-=> :lua Increment()<CR>
+noremap <C--> :lua Decrement()<CR>
+
