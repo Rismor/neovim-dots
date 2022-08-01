@@ -45,12 +45,8 @@ set hidden
 set ignorecase
 
 
-
-
-
 " highlight Normal ctermbg=none
 au BufRead,BufNewFile *.md set filetype=markdown
-
 
 let &t_ut=''
 autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
@@ -207,9 +203,9 @@ let g:airline_theme="gruvbox"
 let g:gruvbox_contrast_dark="soft"
 let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json']
 let g:airline#extensions#branch#enabled=1
-let g:vscode_style = "dark"
+let g:vscode_style = "light"
 let g:vscode_italic_comment = 1
-colorscheme vscode
+colorscheme doom-one
 
 
 
@@ -246,12 +242,13 @@ set iskeyword-=_
 nnoremap <leader>cds :e ~/Documents/School/<CR>
 nnoremap <leader>cdd :e ~/Documents/Development/<CR>
 
-inoremap __ $_{}$<Esc>hi
-inoremap ^^ $^{}$<Esc>hi
+autocmd filetype markdown inoremap __ $_{}$<Esc>hi
+autocmd filetype markdown inoremap ^^ $^{}$<Esc>hi
 
 nnoremap <leader>m :make<Cr>
 noremap <C-=> :lua Increment()<CR>
 noremap <C--> :lua Decrement()<CR>
 noremap <C-0> :lua Print_font()<CR> 
 
-
+ab <p <p>Q</p><Esc>FQxi
+nnoremap <leader>r :!cargo run<CR>
