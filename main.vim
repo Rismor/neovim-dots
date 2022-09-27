@@ -241,6 +241,7 @@ set iskeyword-=_
 
 nnoremap <leader>cds :e ~/Documents/School/<CR>
 nnoremap <leader>cdd :e ~/Documents/Development/<CR>
+nnoremap <leader>r :e ~/.reminders<CR>
 
 autocmd filetype markdown inoremap __ $_{}$<Esc>hi
 autocmd filetype markdown inoremap ^^ $^{}$<Esc>hi
@@ -251,4 +252,3 @@ noremap <C--> :lua Decrement()<CR>
 noremap <C-0> :lua Print_font()<CR> 
 
 ab <p <p>Q</p><Esc>FQxi
-nnoremap <leader>r :!cargo run<CR>

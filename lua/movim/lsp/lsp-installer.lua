@@ -40,7 +40,7 @@ lsp_installer.on_server_ready(function(server)
 			server = vim.tbl_deep_extend("force", server:get_default_options(), opts),
 		})
   server:attach_buffers()
-  require("rust-tools").start_standalone_if_required()
+  require("rust-tools")-- .start_standalone_if_required()
 else
 	server:setup(opts)
 	end

@@ -6,13 +6,13 @@ toggleterm.setup({
 	open_mapping = [[<c-\>]],
 	shade_terminals = false,
 	shading_factor = "1",
-	direction = "horizontal",
+	direction = "float",
 	close_on_exit = true,
 	shell = zsh,
 	float_opts = {
 		border = "curved",
 		width = 100,
-		height = 50,
+		height = 30,
 	},
 	higlights = {
 		border = "#252526",
