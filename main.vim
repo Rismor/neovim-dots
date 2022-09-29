@@ -253,5 +253,5 @@ noremap <C-0> :lua Print_font()<CR>
 
 ab <p <p>Q</p><Esc>FQxi
 
-nnoremap <C-m> :TermExec cmd='make'<CR>
+nnoremap <leader>m :TermExec cmd='make'<CR>
 
