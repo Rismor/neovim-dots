@@ -52,13 +52,14 @@ return packer.startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
+
+  use("nvim-tree/nvim-web-devicons")
   use("morhetz/gruvbox")
   use("NTBBloodbath/doom-one.vim")
   use("Mofiqul/vscode.nvim")
   use("glepnir/dashboard-nvim")
   use("ryanoasis/vim-devicons")
   use({
-
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   })
@@ -119,25 +120,15 @@ return packer.startup(function(use)
   use("stsewd/fzf-checkout.vim")
   use("rafamadriz/friendly-snippets")
 
-  use({
-    "nvim-neorg/neorg",
-    config = function()
-      require("neorg").setup({
-        load = {
-          ["core.defaults"] = {},
-          ["core.export"] = {},
-          ["core.export.markdown"] = {
-            config = {
-              extensions = "all",
-            },
-          },
-        },
-      })
-    end,
-  })
-
   use("akinsho/bufferline.nvim")
 
+  use("ggandor/lightspeed.nvim")
+
+  -- DAP (Debug Adapter Protoc)
+  use("mfussenegger/nvim-dap")
+  -- use("Pocco81/dap-buddy.nvim")
+  use("ravenxrz/DAPInstall.nvim")
+  use { "rcarriga/nvim-dap-ui", requires = ( "mfussenegger/nvim-dap" ) }
   -- NOTES
 
   -- Automatically set up your configuration after cloning packer.nvim
