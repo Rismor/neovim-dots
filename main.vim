@@ -84,7 +84,7 @@ nnoremap <leader>[ :bprev<CR>
 nnoremap <leader>c :bd<CR>
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>D :Dashboard<CR>
-nnoremap <leader><Tab> <C-^>
+nnoremap <leader><Tab> <C-^>  
 nnoremap <C-p> :Rg<CR>
 nnoremap <leader>p "+p
 nnoremap <leader>y "+y
@@ -96,7 +96,7 @@ nnoremap <silent> <Leader>fw :DashboardFindWord<CR>
 nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
 nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 nnoremap <C-c> "+y
-nnoremap <Tab> za
+" nnoremap <Tab> za
 " nnoremap <leader>gs :G<CR>
 " nnoremap <leader>gc :GCheckout<CR>
 nnoremap <leader>gs :Neogit<CR>
@@ -241,6 +241,8 @@ set iskeyword-=_
 
 nnoremap <leader>cds :e ~/Documents/School/mod2/<CR>
 nnoremap <leader>cdd :e ~/Documents/Development/<CR>
+nnoremap <leader>cdn :e ~/.config/nvim/init.lua<CR>
+
 nnoremap <leader>r :e ~/.reminders<CR>
 
 autocmd filetype markdown inoremap __ $_{}$<Esc>hi
