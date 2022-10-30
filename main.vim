@@ -239,7 +239,7 @@ autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
 autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
 set iskeyword-=_ 
 
-nnoremap <leader>cds :e ~/Documents/School/<CR>
+nnoremap <leader>cds :e ~/Documents/School/mod2/<CR>
 nnoremap <leader>cdd :e ~/Documents/Development/<CR>
 nnoremap <leader>r :e ~/.reminders<CR>
 
@@ -255,3 +255,4 @@ ab <p <p>Q</p><Esc>FQxi
 
 nnoremap <leader>m :TermExec cmd='make'<CR>
 
+abbr pf print(f"")<Esc>hi
