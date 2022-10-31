@@ -57,7 +57,7 @@ return packer.startup(function(use)
   use("morhetz/gruvbox")
   use("NTBBloodbath/doom-one.vim")
   use("Mofiqul/vscode.nvim")
-  use("glepnir/dashboard-nvim")
+  use { "glepnir/dashboard-nvim", tag = '*' }
   use("ryanoasis/vim-devicons")
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -81,7 +81,7 @@ return packer.startup(function(use)
       "kyazdani42/nvim-web-devicons", -- optional, for file icon
     },
   })
-  use("akinsho/toggleterm.nvim")
+  use { "akinsho/toggleterm.nvim", tag = '*' }
   use({
     "junegunn/fzf",
     run = "fzf#install()",
@@ -109,26 +109,26 @@ return packer.startup(function(use)
   use("hrsh7th/nvim-cmp")
   use("hrsh7th/cmp-vsnip")
   use("hrsh7th/vim-vsnip")
-  use("dhruvasagar/vim-table-mode")
   use("windwp/nvim-autopairs")
   use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
   -- Git
   use("lewis6991/gitsigns.nvim")
-  -- use("tpope/vim-fugitive")
   use("TimUntersberger/neogit")
   use("stsewd/fzf-checkout.vim")
   use("rafamadriz/friendly-snippets")
 
-  use("akinsho/bufferline.nvim")
+  use { "akinsho/bufferline.nvim", tag = '*' }
 
   use("ggandor/lightspeed.nvim")
 
   -- DAP (Debug Adapter Protoc)
   use("mfussenegger/nvim-dap")
-  -- use("Pocco81/dap-buddy.nvim")
+  use("williamboman/mason.nvim")
+  use("williamboman/mason-lspconfig.nvim")
+
   use("ravenxrz/DAPInstall.nvim")
-  use { "rcarriga/nvim-dap-ui", requires = ( "mfussenegger/nvim-dap" ) }
+  use { "rcarriga/nvim-dap-ui", requires = ("mfussenegger/nvim-dap") }
   -- NOTES
 
   -- Automatically set up your configuration after cloning packer.nvim
