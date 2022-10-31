@@ -1,5 +1,6 @@
 require("movim.plugins")
 vim.cmd("source ~/.config/nvim/main.vim")
+require("movim.mason")
 require("movim.nvim-tree")
 require("movim.fonts")
 require("movim.autopairs")
