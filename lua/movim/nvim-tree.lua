@@ -16,9 +16,9 @@ nvim_tree.setup({
   -- nvim_tree_respect_buff_cwd = true,
   hijack_netrw = true,
   auto_reload_on_write = true,
-  open_on_setup = false,
   hijack_unnamed_buffer_when_opening = true,
   -- hijack_directories = true,
+
   ignore_ft_on_setup = {
     "startify",
     "dashboard",

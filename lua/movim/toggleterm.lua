@@ -5,7 +5,7 @@ end
 toggleterm.setup({
   open_mapping = [[<c-\>]],
   shade_terminals = false,
-  size = vim.o.columns * 1.9,
+  size = vim.o.columns * 0.8,
   shading_factor = "1",
   direction = "vertical",
   close_on_exit = true,

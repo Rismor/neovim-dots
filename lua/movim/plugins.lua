@@ -54,7 +54,8 @@ return packer.startup(function(use)
   })
 
   use("nvim-tree/nvim-web-devicons")
-  use("morhetz/gruvbox")
+  use("ellisonleao/gruvbox.nvim")
+
   use("NTBBloodbath/doom-one.vim")
   use("Mofiqul/vscode.nvim")
   use { "glepnir/dashboard-nvim", tag = '*' }
@@ -64,6 +65,8 @@ return packer.startup(function(use)
     run = ":TSUpdate",
   })
 
+
+  use("windwp/nvim-ts-autotag")
   -- " Expanded Syntax Higlight Support
   use("fladson/vim-kitty")
   use("rust-lang/rust.vim")
@@ -73,7 +76,9 @@ return packer.startup(function(use)
   use("tpope/vim-commentary")
   use("justinmk/vim-sneak")
   use("airblade/vim-rooter")
-  use("preservim/vim-markdown")
+  -- use("preservim/vim-markdown")
+  use("tpope/vim-markdown")
+  use("Shougo/neomru.vim")
   use("machakann/vim-highlightedyank")
   use({
     "kyazdani42/nvim-tree.lua",
@@ -85,6 +90,7 @@ return packer.startup(function(use)
   use({
     "junegunn/fzf",
     run = "fzf#install()",
+    tag = '*'
   })
   use("junegunn/fzf.vim")
   -- " LSP Plugins
@@ -94,6 +100,7 @@ return packer.startup(function(use)
   use("ray-x/lsp_signature.nvim")
   use("williamboman/nvim-lsp-installer")
   use("jose-elias-alvarez/null-ls.nvim")
+  use('MunifTanjim/prettier.nvim')
   use("L3MON4D3/LuaSnip")
   use({
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -130,6 +137,9 @@ return packer.startup(function(use)
   use("ravenxrz/DAPInstall.nvim")
   use { "rcarriga/nvim-dap-ui", requires = ("mfussenegger/nvim-dap") }
   -- NOTES
+  use("lervag/vimtex")
+
+  use("mzlogin/vim-markdown-toc")
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

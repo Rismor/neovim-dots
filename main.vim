@@ -1,10 +1,13 @@
 filetype off
+
 filetype plugin on
 let mapleader = "\<Space>"
 
 
 filetype plugin indent on
 syntax on
+
+colorscheme doom-one
 
 
 " ===========================================================  "
@@ -96,7 +99,7 @@ nnoremap <silent> <Leader>fw :DashboardFindWord<CR>
 nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
 nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 nnoremap <C-c> "+y
-" nnoremap <Tab> za
+nnoremap <Tab> za
 " nnoremap <leader>gs :G<CR>
 " nnoremap <leader>gc :GCheckout<CR>
 nnoremap <leader>gs :Neogit<CR>
@@ -139,7 +142,8 @@ let g:vim_markdown_new_list_item_indent = 1
 let g:vim_markdown_math = 1
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
-let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_folding_disabled = 0
+let g:markdown_folding = 1
 let g:mkdp_refresh_slow=1
 let g:mkdp_markdown_css='~/.local/lib/github-markdown.css'
 let g:airline_left_sep = ''
@@ -205,7 +209,6 @@ let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr',
 let g:airline#extensions#branch#enabled=1
 let g:vscode_style = "light"
 let g:vscode_italic_comment = 1
-colorscheme doom-one
 
 
 
@@ -224,6 +227,7 @@ ab rarr ↳
 ab arr →
 
 
+
 set path+=**
 set wildmenu
 
@@ -239,22 +243,33 @@ autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
 autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
 set iskeyword-=_ 
 
-nnoremap <leader>cds :e ~/Documents/School/mod2/<CR>
+nnoremap <leader>cds :e ~/Documents/School/mod4/<CR>
 nnoremap <leader>cdd :e ~/Documents/Development/<CR>
 nnoremap <leader>cdn :e ~/.config/nvim/init.lua<CR>
 
 nnoremap <leader>r :e ~/.reminders<CR>
 
-autocmd filetype markdown inoremap __ $_{}$<Esc>hi
-autocmd filetype markdown inoremap ^^ $^{}$<Esc>hi
-
-nnoremap <leader>m :make<Cr>
 noremap <C-=> :lua Increment()<CR>
 noremap <C--> :lua Decrement()<CR>
 noremap <C-0> :lua Print_font()<CR> 
 
-ab <p <p>Q</p><Esc>FQxi
 
-nnoremap <leader>m :TermExec cmd='make'<CR>
+" ab <h1 <h1>Q</h1><Esc>FQxi
+" ab <h2 <h2>Q</h2><Esc>FQxi
 
-abbr pf print(f"")<Esc>hi
+" MAKE FILE STUFF
+" nnoremap <leader>m :TermExec cmd='make'<CR>
+nnoremap <leader>m :make<Cr>
+
+ab pf print(f"")<Esc>hi
+
+
+let g:loaded_python3_provider = 0
+let g:UltiSnipsEditSplit="vertical"
+
+nnoremap <silent> <Leader>h :call fzf#run({
+\   'source': 'sed "1d" $HOME/.cache/neomru/file',
+\   'sink': 'e '
+\ })<CR>
+
+
