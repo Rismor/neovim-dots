@@ -57,6 +57,7 @@ return packer.startup(function(use)
   use("ellisonleao/gruvbox.nvim")
 
   use("NTBBloodbath/doom-one.vim")
+  use("olimorris/onedarkpro.nvim")
   use("Mofiqul/vscode.nvim")
   use { "glepnir/dashboard-nvim", tag = '*' }
   use("ryanoasis/vim-devicons")
