@@ -31,4 +31,13 @@ function Print_font()
   local font = string.sub(s, 1 - string.find(string.reverse(s), "h"), string.len(s))
   print(font)
 end
+   
+function Casc()
+  vim.o.guifont = "Cascadia Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h15"
+end
+
+
+function Fira() 
+  vim.o.guifont = "Fira Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h15"
+end
 

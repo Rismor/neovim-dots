@@ -1,5 +1,4 @@
 filetype off
-
 filetype plugin on
 let mapleader = "\<Space>"
 
@@ -7,22 +6,9 @@ let mapleader = "\<Space>"
 filetype plugin indent on
 syntax on
 
-colorscheme doom-one
+colorscheme onedark
 
 
-" ===========================================================  "
-" __      ___              ____        _   _                   "
-" \ \    / (_)            / __ \      | | (_)                  "
-"  \ \  / / _ _ __ ___   | |  | |_ __ | |_ _  ___  _ __  ___   "
-"   \ \/ / | | '_ ` _ \  | |  | | '_ \| __| |/ _ \| '_ \/ __|  "
-"    \  /  | | | | | | | | |__| | |_) | |_| | (_) | | | \__ \  "
-"     \/   |_|_| |_| |_|  \____/| .__/ \__|_|\___/|_| |_|___/  "
-"                               | |                            "
-"                               |_|                            "
-" ===========================================================  "
-"
-"
-"
 set splitright
 set encoding=UTF-8
 set diffopt+=vertical
@@ -42,7 +28,10 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 
 set laststatus=2
 set mouse =a
-set guifont=Cascadia\ Code,CaskaydiaCove\ Nerd\ Font,Apple\ Color\ Emoji:h15
+
+" set guifont=Cascadia\ Code,CaskaydiaCove\ Nerd\ Font,Apple\ Color\ Emoji:h15
+set guifont=Fira\ Code,CaskaydiaCove\ Nerd\ Font,Apple\ Color\ Emoji:h15
+
 set guicursor+=i:ver100-iCursor 
 set hidden
 set ignorecase
@@ -72,59 +61,49 @@ autocmd InsertEnter * norm zz
 "            |___/                                 "
 " ================================================ "
 
-nnoremap <F5> "=strftime("%c")<CR>P7bd$0i#<Space><Esc>o
-nnoremap <leader>o :setlocal spell! spelllang=en_us<CR>
-
-nnoremap <leader><leader> :w<CR>
-nnoremap <leader>w <C-w>
-nnoremap <leader>. :lua vim.lsp.buf.code_action()<CR>
-nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
-nnoremap gd        :lua vim.lsp.buf.definition()<CR>
-
-nnoremap <CR> :noh<CR><CR>
-nnoremap <leader>] :bnext<CR>
-nnoremap <leader>[ :bprev<CR>
-nnoremap <leader>c :bd<CR>
-nnoremap <leader>d :bd<CR>
-nnoremap <leader>D :Dashboard<CR>
-nnoremap <leader><Tab> <C-^>  
-nnoremap <C-p> :Rg<CR>
-nnoremap <leader>p "+p
-nnoremap <leader>y "+y
-nnoremap <leader>n :NvimTreeToggle<CR>
-nnoremap <silent> <Leader>fr :DashboardFindHistory<CR>
-nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
-nnoremap <silent> <Leader>cc :DashboardChangeColorscheme<CR>
-nnoremap <silent> <Leader>fw :DashboardFindWord<CR>
-nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
-nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
-nnoremap <C-c> "+y
-nnoremap <Tab> za
-" nnoremap <leader>gs :G<CR>
-" nnoremap <leader>gc :GCheckout<CR>
-nnoremap <leader>gs :Neogit<CR>
-" nnoremap  zz :normal zz<CR> 
-nnoremap `` :Marks<CR>
-nnoremap <leader>lc :!g++ %:t && ./a.out<CR>
-
+" noremap <F5> "=strftime("%c")<CR>P7bd$0i#<Space><Esc>o
+" nnoremap <leader>o :setlocal spell! spelllang=en_us<CR>
+" nnoremap <leader><leader> :w<CR>
+" nnoremap <leader>w <C-w>
+" nnoremap <leader>. :lua vim.lsp.buf.code_action()<CR>
+" nnoremap <leader>k :lua vim.lsp.buf.hover()<CR>
+" nnoremap gd        :lua vim.lsp.buf.definition()<CR>
+" nnoremap <CR> :noh<CR><CR>
+" nnoremap <leader>] :bnext<CR>
+" nnoremap <leader>[ :bprev<CR>
+" nnoremap <leader>c :bd<CR>
+" nnoremap <leader>d :bd<CR>
+" nnoremap <leader>D :Dashboard<CR>
+" nnoremap <leader><Tab> <C-^>  
+" nnoremap <C-p> :Rg<CR>
+" nnoremap <leader>p "+p
+" nnoremap <leader>y "+y
+" nnoremap <leader>n :NvimTreeToggle<CR>
+" nnoremap <silent> <Leader>fr :DashboardFindHistory<CR>
+" nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+" nnoremap <silent> <Leader>cc :DashboardChangeColorscheme<CR>
+" nnoremap <silent> <Leader>fw :DashboardFindWord<CR>
+" nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+" nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+" nnoremap <C-c> "+y
+" nnoremap <Tab> za
+" nnoremap <leader>gs :Neogit<CR>
+" nnoremap `` :Marks<CR>
+" nnoremap <leader>lc :!g++ %:t && ./a.out<CR>
 inoremap <expr> <Tab> search('\%#[]>)}$''"`]', 'n') ? '<Right>' : '<Tab>'
-imap <C-j> <C-n>
-inoremap <C-k> <C-p>
-inoremap <C-v> <Esc>"+p
-inoremap <C-c> "+y
-inoremap <C-s> <C-t>
+" imap <C-j> <C-n>
+" inoremap <C-k> <C-p>
+" inoremap <C-v> <Esc>"+p
+" inoremap <C-c> "+y
+" inoremap <C-s> <C-t>
+" vnoremap<leader>y "+y
+" vnoremap<leader>p "+p
+" vnoremap <C-j> <C-n>
+" vnoremap <C-k> <C-p>
+" noremap <C-j> <C-n>
+" noremap <C-k> <C-p>
 
-vnoremap<leader>y "+y
-vnoremap<leader>p "+p
-vnoremap <C-j> <C-n>
-vnoremap <C-k> <C-p>
-
-noremap <C-j> <C-n>
-noremap <C-k> <C-p>
-" map f <Plug>Sneak_f
-" map F <Plug>Sneak_F
-" map z <Plug>Sneak_s
-" map Z <Plug>Sneak_S
+" nnoremap <leader>gc :GCheckout<CR>
 
 
 
@@ -233,25 +212,25 @@ set wildmenu
 
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr() 
-nnoremap J ddp 
-nnoremap K ddkP
+" nnoremap J ddp 
+" nnoremap K ddkP
+" nnoremap <leader>b :Buffers<CR>
+" nnoremap <leader>m :make<Cr>
 
 
 
-nnoremap <leader>b :Buffers<CR>
 autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
 autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
 set iskeyword-=_ 
 
-nnoremap <leader>cds :e ~/Documents/School/mod4/<CR>
-nnoremap <leader>cdd :e ~/Documents/Development/<CR>
-nnoremap <leader>cdn :e ~/.config/nvim/init.lua<CR>
+" nnoremap <leader>cds :e ~/Documents/School/mod4/<CR>
+" nnoremap <leader>cdd :e ~/Documents/Development/<CR>
+" nnoremap <leader>cdn :e ~/.config/nvim/init.lua<CR>
+" nnoremap <leader>r :e ~/.reminders<CR>
+" noremap <C-=> :lua Increment()<CR>
+" noremap <C--> :lua Decrement()<CR>
+" noremap <C-0> :lua Print_font()<CR> 
 
-nnoremap <leader>r :e ~/.reminders<CR>
-
-noremap <C-=> :lua Increment()<CR>
-noremap <C--> :lua Decrement()<CR>
-noremap <C-0> :lua Print_font()<CR> 
 
 
 " ab <h1 <h1>Q</h1><Esc>FQxi
@@ -259,7 +238,6 @@ noremap <C-0> :lua Print_font()<CR>
 
 " MAKE FILE STUFF
 " nnoremap <leader>m :TermExec cmd='make'<CR>
-nnoremap <leader>m :make<Cr>
 
 ab pf print(f"")<Esc>hi
 
@@ -271,5 +249,14 @@ nnoremap <silent> <Leader>h :call fzf#run({
 \   'source': 'sed "1d" $HOME/.cache/neomru/file',
 \   'sink': 'e '
 \ })<CR>
+
+
+nnoremap <silent> <Leader>fr :call fzf#run({
+\   'source': 'sed "1d" $HOME/.cache/neomru/file',
+\   'sink': 'e '
+\ })<CR>
+
+
+
 
 
