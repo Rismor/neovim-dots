@@ -32,12 +32,24 @@ function Print_font()
   print(font)
 end
    
+-- h:15 is the font size
+-- It is shown twice because nvui takes the arg at the beginning of the string
+-- and neovide takes the arg at the end of the string
 function Casc()
-  vim.o.guifont = "Cascadia Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h15"
+  local casc_font ="Cascadia Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h" 
+  local s = get_font()
+  local font = string.sub(s, 1 - string.find(string.reverse(s), "h"), string.len(s))
+  local final_font = casc_font .. font
+  vim.o.guifont = final_font
 end
 
 
 function Fira() 
-  vim.o.guifont = "Fira Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h15"
+  local fira_font ="Fira Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h" 
+  local s = get_font()
+  local font = string.sub(s, 1 - string.find(string.reverse(s), "h"), string.len(s))
+  final_font = fira_font .. font
+  vim.o.guifont = final_font
 end
+
 
