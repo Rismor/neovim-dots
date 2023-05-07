@@ -32,9 +32,6 @@ function Print_font()
   print(font)
 end
    
--- h:15 is the font size
--- It is shown twice because nvui takes the arg at the beginning of the string
--- and neovide takes the arg at the end of the string
 function Casc()
   local casc_font ="Cascadia Code,CaskaydiaCove Nerd Font,Apple Color Emoji:h" 
   local s = get_font()
