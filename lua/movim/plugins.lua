@@ -142,6 +142,8 @@ return packer.startup(function(use)
 
   use("mzlogin/vim-markdown-toc")
 use("github/copilot.vim")
+
+use('folke/zen-mode.nvim')
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
