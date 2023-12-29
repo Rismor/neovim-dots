@@ -169,10 +169,10 @@ ab pf print(f"")<Esc>hi
 let g:loaded_python3_provider = 0
 let g:UltiSnipsEditSplit="vertical"
 
-nnoremap <silent> <Leader>h :call fzf#run({
-\   'source': 'sed "1d" $HOME/.cache/neomru/file',
-\   'sink': 'e '
-\ })<CR>
+" nnoremap <silent> <Leader>h :call fzf#run({
+" \   'source': 'sed "1d" $HOME/.cache/neomru/file',
+" \   'sink': 'e '
+" \ })<CR>
 
 
 nnoremap <silent> <Leader>fr :call fzf#run({
