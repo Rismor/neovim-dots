@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
-local plugins = require("movim.plugins")
+vim.opt.shada = "'100,<100,s10,h" -- this might not be needed come back to it later
 
 
 -- Bootstrap LazyVim 
+local plugins = require("movim.plugins")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
