@@ -1,152 +1,97 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system({
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  })
-  print("Installing packer close and reopen Neovim...")
-  vim.cmd([[packadd packer.nvim]])
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-  return
-end
-
-packer.init({
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "rounded" })
-    end,
+local plugins_list = {
+  {
+    "Mofiqul/vscode.nvim",
+    config = function ()
+      vim.cmd([[colorscheme vscode]])
+    end
   },
-})
 
--- Install your plugins here
-return packer.startup(function(use)
-  -- Required Plugins
-  use("wbthomason/packer.nvim") -- Have packer manage itself
-  use("lewis6991/impatient.nvim")
-  use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use "nvim-telescope/telescope.nvim"
-  -- USER PLUGINS --
-
-  -- Eye Candy:
-  use({
-    "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-  })
-
-  use("nvim-tree/nvim-web-devicons")
-  use("ellisonleao/gruvbox.nvim")
-
-  use("NTBBloodbath/doom-one.vim")
-  use("olimorris/onedarkpro.nvim")
-  use("Mofiqul/vscode.nvim")
-  use { "glepnir/dashboard-nvim", tag = '*' }
-  use("ryanoasis/vim-devicons")
-  use({
-    "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
-  })
-
-
-  use("windwp/nvim-ts-autotag")
-  -- " Expanded Syntax Higlight Support
-  use("fladson/vim-kitty")
-  use("rust-lang/rust.vim")
-
-  -- " Vim Enhancement Plugins
-  use("tpope/vim-surround")
-  use("tpope/vim-commentary")
-  use("justinmk/vim-sneak")
-  use("airblade/vim-rooter")
-  -- use("preservim/vim-markdown")
-  use("tpope/vim-markdown")
-  use("Shougo/neomru.vim")
-  use("machakann/vim-highlightedyank")
-  use({
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-      "kyazdani42/nvim-web-devicons", -- optional, for file icon
-    },
-  })
-  use { "akinsho/toggleterm.nvim", tag = '*' }
-  use({
+  { "nvim-lua/popup.nvim" },
+  { "nvim-lua/plenary.nvim" },
+  { "nvim-telescope/telescope.nvim" },
+  { "windwp/nvim-ts-autotag" },
+  { "tpope/vim-surround" },
+  { "tpope/vim-commentary" },
+  { "justinmk/vim-sneak" },
+  { "airblade/vim-rooter" },
+  { "machakann/vim-highlightedyank" },
+  { 
+    "nvim-tree/nvim-tree.lua",
+    config = function()
+      require("nvim-tree").setup{}
+    end
+  },
+  { "nvim-tree/nvim-web-devicons", lazy = true }, 
+  { "williamboman/mason.nvim" },
+  -- {
+  --   "arsham/fzfmania.nvim",
+  --   dependencies = {
+  --     "arsham/arshlib.nvim",
+  --     "fzf.vim",
+  --     "plenary.nvim",
+  --     },
+  --     event = { "VeryLazy" },
+  --   },
+  { "junegunn/fzf.vim" },
+  {
     "junegunn/fzf",
-    run = "fzf#install()",
+    build = "fzf#install()",
     tag = '*'
-  })
-  use("junegunn/fzf.vim")
-  -- " LSP Plugins
-  use("neovim/nvim-lspconfig")
-  use("nvim-lua/lsp_extensions.nvim")
-  use("simrat39/rust-tools.nvim")
-  use("ray-x/lsp_signature.nvim")
-  use("williamboman/nvim-lsp-installer")
-  use("jose-elias-alvarez/null-ls.nvim")
-  use('MunifTanjim/prettier.nvim')
-  use("L3MON4D3/LuaSnip")
-  use({
+  },
+  {
+    'ThePrimeagen/harpoon',
+    keys = {
+      {"<C-h>", "<cmd>lua require('harpoon.ui').nav_file(1)<CR>", desc="Harpoon File 1"},
+      {"<C-j>", "<cmd>lua require('harpoon.ui').nav_file(2)<CR>", desc="Harpoon File 2"},
+      {"<C-k>", "<cmd>lua require('harpoon.ui').nav_file(3)<CR>", desc="Harpoon File 3"},
+      {"<C-l>", "<cmd>lua require('harpoon.ui').nav_file(4)<CR>", desc="Harpoon File 4"},
+      {"<C-e>", "<cmd>lua require('harpoon.mark').add_file()<CR>", desc="Add a file to the shotlist"},
+      {"<leader>hl", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc="List the shotlist"}
+    }
+  },
+
+  { "ggandor/lightspeed.nvim" },
+  { 'MunifTanjim/prettier.nvim' },
+  { "L3MON4D3/LuaSnip" },
+  { "ray-x/lsp_signature.nvim" },
+  { "lewis6992/gitsigns.nvim" },
+  { "TimUntersberger/neogit", config=true },
+  { "akinsho/bufferline.nvim", tag = '*' },
+  { "hrsh7th/cmp-nvim-lsp" },
+  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-path" },
+  { "hrsh7th/nvim-cmp" },
+  { "hrsh7th/cmp-vsnip" },
+  { "hrsh7th/vim-vsnip" },
+  { "windwp/nvim-autopairs" },
+  { "github/copilot.vim" },
+  { "neovim/nvim-lspconfig" },
+  { "nvim-lua/lsp_extensions.nvim" },
+  { "williamboman/nvim-lsp-installer" },
+  {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines")
+
     end,
-  })
+      vim.diagnostic.config({virtual_text = false}) -- virtual text duplicates lsp lines
+  },
+  {
+    "nvim-lualine/lualine.nvim" -- see how u r supposed to load in devicons and they are lazy loaded so care
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    keys = {
+      { "<c-space>", desc = "Increment selection" },
+      { "<bs>", desc = "Decrement selection", mode = "x" },
+    },
+    opts = {
+      highlight = {enable = true},
+      indent = {enable = true},
+    }
+  },
+}
 
-  -- "Autocomplete Plugins
-  use("hrsh7th/cmp-nvim-lsp")
-  use("hrsh7th/cmp-buffer")
-  use("hrsh7th/cmp-path")
-  use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-vsnip")
-  use("hrsh7th/vim-vsnip")
-  use("windwp/nvim-autopairs")
-  use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
-
-  -- Git
-  use("lewis6991/gitsigns.nvim")
-  use("TimUntersberger/neogit")
-  use("stsewd/fzf-checkout.vim")
-  use("rafamadriz/friendly-snippets")
-
-  use { "akinsho/bufferline.nvim", tag = '*' }
-
-  use("ggandor/lightspeed.nvim")
-
-  -- DAP (Debug Adapter Protoc)
-  use("mfussenegger/nvim-dap")
-  use("williamboman/mason.nvim")
-  use("williamboman/mason-lspconfig.nvim")
-
-  use("ravenxrz/DAPInstall.nvim")
-  use { "rcarriga/nvim-dap-ui", requires = ("mfussenegger/nvim-dap") }
-  -- NOTES
-  use("lervag/vimtex")
-
-  use("mzlogin/vim-markdown-toc")
-use("github/copilot.vim")
-
-use('folke/zen-mode.nvim')
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
-end)
+return plugins_list
