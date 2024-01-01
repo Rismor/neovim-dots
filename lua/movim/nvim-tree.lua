@@ -13,6 +13,8 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 -- local tree_cb =nvim_tree_config.nvim_tree_callback
 nvim_tree.setup({
   disable_netrw = true,
+  sync_root_with_cwd = true,
+
   -- nvim_tree_respect_buff_cwd = true,
   hijack_netrw = true,
   auto_reload_on_write = true,
@@ -24,8 +26,9 @@ nvim_tree.setup({
     "dashboard",
     "alpha",
   },
+
   -- auto_close = false,
-  open_on_tab = false,
+  open_on_tab = true,
   hijack_cursor = true,
   update_cwd = true,
   -- update_to_buf_dir = {
@@ -47,6 +50,7 @@ nvim_tree.setup({
       error = "",
     },
   },
+
   renderer = {
     icons = {
       glyphs = {
@@ -72,10 +76,12 @@ nvim_tree.setup({
       }
     },
   },
+
   update_focused_file = {
+    update_root = true,
     enable = true,
     update_cwd = true,
-    ignore_list = {},
+    ignore_list = { },
   },
   system_open = {
     cmd = nil,
