@@ -3,8 +3,9 @@ vim.api.nvim_set_keymap('n', '<leader>w', '<C-w>', {})
 vim.api.nvim_set_keymap('n', '<leader><Tab>', '<C-^>', {})
 
 -- LSP Bindings --
+vim.api.nvim_set_keymap('n', '<leader>lf', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.lsp.buf.hover()<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>lk', ':lua vim.lsp.buf.hover()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {})
 
 -- Buffer keybinds --
@@ -76,6 +77,5 @@ vim.api.nvim_set_keymap('n', '<leader>d', ':Telescope diagnostics<CR>', { norema
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
 
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
--- vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 
+vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap-forward-to)')
