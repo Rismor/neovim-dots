@@ -1,12 +1,12 @@
-filetype off
-filetype plugin on
-let mapleader = "\<Space>"
+" filetype off
+" filetype plugin on
+" let mapleader = "\<Space>"
 
 
-filetype plugin indent on
-syntax on
+" filetype plugin indent on
+" syntax on
 
-colorscheme vscode
+" colorscheme vscode
 
 
 set splitright
@@ -134,7 +134,6 @@ let g:dashboard_custom_shortcut={
 
 let g:rooter_patterns = ['build.gradle', '.vim','.git', '_darcs', '.hg', '.bzr', '.svn', 'Makefile', 'package.json', 'Cargo.toml']
 
-let g:airline#extensions#branch#enabled=1
 
 
 
@@ -147,48 +146,23 @@ ab arr →
 set path+=**
 set wildmenu
 
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr() 
-" nnoremap J ddp 
-" nnoremap K ddkP
-" nnoremap <leader>b :Buffers<CR>
-" nnoremap <leader>m :make<Cr>
 
 
-
-autocmd FileType *.md nnoremap <leader>lr :!pandoc %:t -o %:t.pdf
-autocmd FileType *.py nnoremap <leader>lr :!python3 %:t 
 set iskeyword-=_ 
 
 
 
-ab pf print(f"")<Esc>hi
 
-
-
-let g:loaded_python3_provider = 0
 let g:UltiSnipsEditSplit="vertical"
-
-" nnoremap <silent> <Leader>h :call fzf#run({
-" \   'source': 'sed "1d" $HOME/.cache/neomru/file',
-" \   'sink': 'e '
-" \ })<CR>
 
 
 nnoremap <silent> <Leader>fr :call fzf#run({
-\   'source': 'sed "1d" $HOME/.cache/neomru/file',
+\   'source': 'sed "1d" $HOME/.cache/neomru/file', 
 \   'sink': 'e '
 \ })<CR>
 
 
 
-let g:neovide_transparency=0.98
-let g:neovide_cursor_vfx_mode = "sonicboom"
-let g:neovide_refresh_rate=240
-let g:neovide_scroll_animation_length=0.45
-let g:neovide_cursor_animation_length=0.1
-let g:neovide_hide_mouse_when_typing = v:false
-let g:neovide_underline_automatic_scaling = v:true
 
 
 
