@@ -102,6 +102,7 @@ cmp.setup({
       }
     })
   },
+
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
@@ -117,6 +118,7 @@ cmp.setup({
       return vim_item
     end,
   },
+
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
@@ -124,10 +126,12 @@ cmp.setup({
     { name = "buffer" },
     { name = "path" },
   },
+  
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
+
   experimental = {
     ghost_text = false,
     native_menu = false,
