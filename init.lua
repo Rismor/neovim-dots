@@ -4,6 +4,7 @@ vim.opt.shada = "'100,<100,s10,h" -- this might not be needed come back to it la
 
 -- Bootstrap LazyVim
 local plugins = require("movim.plugins")
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -17,6 +18,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup(plugins, opts)
 
 
