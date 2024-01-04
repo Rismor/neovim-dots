@@ -101,10 +101,18 @@ return {
       { "<c-space>", desc = "Increment selection" },
       { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
-    opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-    }
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        highlight = { enable = true }
+      }
+      -- local opts = {
+      --   highlight = { enable = true },
+      --   indent = { enable = true },
+      --   ensure_installed = { 'svelte' }
+      --  }
+    end
   },
+  "windwp/nvim-ts-autotag",        -- use ts to close tags
+  "nvim-ts-context-commentstring", -- use ts to comment
 
 }
