@@ -1,5 +1,7 @@
 # neovim-dots
 
-- This is my personal neovim config, coupled withed Neovide, a no-nonsense rust
-  client for neovim, you will mirror my setupt perfectly, more documentation to
-  come.
+This is my personal neovim config that is a result from over 5 years of using
+vim.
+
+⚠️ WARN ⚠️
+This config may break from time to time , sorry.
