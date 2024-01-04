@@ -11,7 +11,6 @@ return {
       "hrsh7th/cmp-path",             -- suggest from path
       "hrsh7th/cmp-emoji",            -- suggest from emojis
       "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions,
-      "nvim-lua/lsp_extensions.nvim", -- extends the lsp (inlay hints, diagnostics),
       "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions
     },
 
