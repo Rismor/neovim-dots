@@ -21,8 +21,5 @@ require("lazy").setup("plugins")
 
 vim.cmd("source ~/.config/nvim/main.vim")
 
-require("movim.lsp")
 require("movim.lualine")
-require('movim.vscode')
 require("movim.keybinds")
-
