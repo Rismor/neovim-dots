@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.opt.shada = "'100,<100,s10,h" -- this might not be needed come back to it later
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 
 
