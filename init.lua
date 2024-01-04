@@ -22,3 +22,5 @@ require("lazy").setup("plugins")
 vim.cmd("source ~/.config/nvim/main.vim")
 
 require("movim.keybinds")
+
+vim.keymap.set("n", "<leader>n", "Neotree<Cr>")
