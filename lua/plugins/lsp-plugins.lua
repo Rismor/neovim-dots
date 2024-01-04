@@ -1,17 +1,21 @@
 return {
+  "wesleimp/stylua.nvim",         -- required for stylua
+  "j-hui/fidget.nvim",            -- Install information for lsps
+  "nvim-lua/lsp_extensions.nvim", -- extends the lsp (inlay hints, diagnostics)
+  "wesleimp/stylua.nvim",         -- required for stylua
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/nvim-cmp",             -- auto complete
-      "hrsh7th/cmp-nvim-lsp",         -- suggest from lsp
-      "L3MON4D3/LuaSnip",             -- suggest from snippets
-      "hrsh7th/cmp-buffer",           -- suggest from buffer
-      "hrsh7th/cmp-path",             -- suggest from path
-      "hrsh7th/cmp-emoji",            -- suggest from emojis
-      "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions,
-      "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions
+      "hrsh7th/nvim-cmp",         -- auto complete
+      "hrsh7th/cmp-nvim-lsp",     -- suggest from lsp
+      "L3MON4D3/LuaSnip",         -- suggest from snippets
+      "hrsh7th/cmp-buffer",       -- suggest from buffer
+      "hrsh7th/cmp-path",         -- suggest from path
+      "hrsh7th/cmp-emoji",        -- suggest from emojis
+      "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions,
+      "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions
     },
 
     config = function()
@@ -26,6 +30,18 @@ return {
         handlers = {
           function(server_name) -- default handler
             require("lspconfig")[server_name].setup {}
+          end,
+          ['lua_ls'] = function()
+            local lspconfig = require('lspconfig')
+            lspconfig.lua_ls.setup {
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = { "vim" }
+                  }
+                }
+              }
+            }
           end
         }
       })
@@ -68,24 +84,14 @@ return {
 
   },
 
-  { "wesleimp/stylua.nvim" }, -- required for stylua
-
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   keys = function() return {} end,
-  -- },
-
-
-  { "j-hui/fidget.nvim" },          -- Install information for lsps
-  { "nvim-lua/lsp_extensions.nvim" }, -- extends the lsp (inlay hints, diagnostics)
-  { "wesleimp/stylua.nvim" },       -- required for stylua
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines")
     end,
-    vim.diagnostic.config({ virtual_text = false }) -- virtual text duplicates lsp lines
+    vim.diagnostic.config({ virtual_text = true }) -- virtual text duplicates lsp lines
   },
+
 
 
   {

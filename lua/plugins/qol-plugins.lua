@@ -1,18 +1,19 @@
 return {
-  { "nvim-lua/popup.nvim" },                         -- required for a bunch of plugins
-  { "folke/trouble.nvim" },                          -- pretty list of diagnostics and quickfixes
-  { "nvim-lua/plenary.nvim" },                       -- required for a bunch of plugins
-  { "windwp/nvim-ts-autotag" },                      -- use treesitter to close tags
-  { "nvim-ts-context-commentstring" },               -- use treesitter to comment
-  { "tpope/vim-surround" },                          -- change Surround
-  { "tpope/vim-repeat" },                            -- hack vim .
-  { "tpope/vim-commentary" },                        -- gcc comments
-  { "ggandor/leap.nvim" },                           -- movement plugin
-  { "TimUntersberger/neogit",       config = true }, -- neogit.
-  { "Shougo/neomru.vim" },                           -- track recently visitied files
+  "nvim-lua/popup.nvim",                       -- required for a bunch of plugins
+  "folke/trouble.nvim",                        -- pretty list of diagnostics and quickfixes
+  "nvim-lua/plenary.nvim",                     -- required for a bunch of plugins
+  "windwp/nvim-ts-autotag",                    -- use treesitter to close tags
+  "nvim-ts-context-commentstring",             -- use treesitter to comment
+  "tpope/vim-surround",                        -- change Surround
+  "tpope/vim-repeat",                          -- hack vim .
+  "tpope/vim-commentary",                      -- gcc comments
+  "ggandor/leap.nvim",                         -- movement plugin
+  "Shougo/neomru.vim",                         -- track recently visitied files
+  "folke/trouble.nvim",
+  { "TimUntersberger/neogit", config = true }, -- neogit.
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "InsertEnter", -- load once insert mode is entered
     opts = {}
   }, -- insert closing brackets
   {
@@ -24,6 +25,7 @@ return {
       { "<C-l>",      "<cmd>lua require('harpoon.ui').nav_file(4)<CR>",         desc = "Harpoon File 4" },
       { "<C-e>",      "<cmd>lua require('harpoon.mark').add_file()<CR>",        desc = "Add a file to the shotlist" },
       { "<leader>hl", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc = "List the shotlist" }
-    }
+    },
+    lazy = false
   },
 }
