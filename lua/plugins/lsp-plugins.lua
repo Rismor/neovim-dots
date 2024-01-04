@@ -1,9 +1,18 @@
-return  {
+return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "hrsh7th/nvim-cmp",             -- auto complete
+      "hrsh7th/cmp-nvim-lsp",         -- suggest from lsp
+      "L3MON4D3/LuaSnip",             -- suggest from snippets
+      "hrsh7th/cmp-buffer",           -- suggest from buffer
+      "hrsh7th/cmp-path",             -- suggest from path
+      "hrsh7th/cmp-emoji",            -- suggest from emojis
+      "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions,
+      "nvim-lua/lsp_extensions.nvim", -- extends the lsp (inlay hints, diagnostics),
+      "ray-x/lsp_signature.nvim",     -- get signature hints (args) for functions
     },
 
     config = function()
@@ -21,31 +30,56 @@ return  {
           end
         }
       })
+
+      local cmp = require('cmp')
+      local luasnip = require('luasnip')
+
+
+
+      cmp.setup({
+        snippet = {
+          -- Must Specify a snippet engine
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end
+        },
+        mapping = {
+          ["<C-p>"] = cmp.mapping.select_prev_item(),
+          ["<C-n>"] = cmp.mapping.select_next_item(),
+          ["<C-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-2), { "i", "c" }),
+          ["<C-j>"] = cmp.mapping(cmp.mapping.scroll_docs(2), { "i", "c" }),
+          ["<C-e>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-Tab>"] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_locally_jumpable() then
+              luasnip.expand_or_jump()
+            end
+          end)
+        },
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+          { name = "" }
+
+        },
+
+      })
     end
 
   },
 
-  { "folke/neodev.nvim",           opts = {} }, -- nvim lua api
-  { "ray-x/lsp_signature.nvim" },               -- get signature hints (args) for functions
+  { "wesleimp/stylua.nvim" }, -- required for stylua
+
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   keys = function() return {} end,
+  -- },
 
 
+  { "j-hui/fidget.nvim" },          -- Install information for lsps
   { "nvim-lua/lsp_extensions.nvim" }, -- extends the lsp (inlay hints, diagnostics)
-  { "wesleimp/stylua.nvim" },         -- required for stylua
-  { "ray-x/lsp_signature.nvim" },     -- get signature hints (args) for functions
-
-
-  { "hrsh7th/nvim-cmp" },       -- autocomplete for neovim
-  { "hrsh7th/cmp-nvim-lsp" },   -- suggest from lsp
-  { "hrsh7th/cmp-buffer" },     -- suggest from buffer
-  { "hrsh7th/cmp-path" },       -- suggest from path
-  { "L3MON4D3/LuaSnip" },       -- suggest from sinnepts
-  { "zbirenbaum/copilot-cmp" }, -- suggest from copilot
-  --  { "hrsh7th/cmp-vsnip" },                      -- suggest from snippets
-
-
-  { "j-hui/fidget.nvim" },            -- Install information for lsps
-  { "nvim-lua/lsp_extensions.nvim" }, -- extends the lsp (inlay hints, diagnostics)
-  --{ "wesleimp/stylua.nvim" },                        -- required for stylua
+  { "wesleimp/stylua.nvim" },       -- required for stylua
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
@@ -70,4 +104,3 @@ return  {
   },
 
 }
-

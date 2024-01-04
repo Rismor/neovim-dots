@@ -14,13 +14,13 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     opts = {}
-  },        -- insert closing brackets
-  {
-    "nvim-tree/nvim-tree.lua",
-    config = function()
-      require("nvim-tree").setup {}
-    end
-  },
+  }, -- insert closing brackets
+  -- {
+  --   "nvim-tree/nvim-tree.lua",
+  --   config = function()
+  --     require("nvim-tree").setup {}
+  --   end
+  -- },
   {
     "junegunn/fzf",
     build = "fzf#install()",
