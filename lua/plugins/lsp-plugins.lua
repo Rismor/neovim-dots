@@ -85,13 +85,12 @@ return {
   },
 
   {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    "Maan2003/lsp_lines.nvim",
     config = function()
-      require("lsp_lines")
+      require("lsp_lines").setup()
     end,
-    vim.diagnostic.config({ virtual_text = true }) -- virtual text duplicates lsp lines
+    vim.diagnostic.config({ virtual_text = false })
   },
-
 
 
   {
