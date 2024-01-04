@@ -32,8 +32,6 @@ vim.api.nvim_set_keymap('n', '<leader>r', ':e ~/.reminders<CR>', { noremap = tru
 vim.api.nvim_set_keymap('n', '<leader>o', ':setlocal spell! spelllang=en_us<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader><leader>', ':w<CR>', {})
 vim.api.nvim_set_keymap('n', '<CR>', ':noh<CR><CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-n>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-p>', { noremap = true })
 -- vim.api.nvim_set_keymap('i', '<expr> <Tab>', 'search("\\%#[]>)}$\'\'"`]", "n") ? "<Right>" : "<Tab>"', { noremap = true })
 vim.api.nvim_set_keymap('n', 'J', 'ddp', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', 'K', 'ddkP', { noremap = true, silent = true })
