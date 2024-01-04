@@ -15,17 +15,6 @@ return {
     event = "InsertEnter",
     opts = {}
   }, -- insert closing brackets
-  -- {
-  --   "nvim-tree/nvim-tree.lua",
-  --   config = function()
-  --     require("nvim-tree").setup {}
-  --   end
-  -- },
-  {
-    "junegunn/fzf",
-    build = "fzf#install()",
-    tag = '*'
-  },
   {
     'ThePrimeagen/harpoon',
     keys = {
@@ -37,6 +26,4 @@ return {
       { "<leader>hl", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>", desc = "List the shotlist" }
     }
   },
-
-
 }
