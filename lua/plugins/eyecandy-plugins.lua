@@ -32,12 +32,19 @@ return {
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           always_divide_middle = true,
-          disabled_filetypes = { "NVimTree", "dashboard", "toggleterm" },
+          disabled_filetypes = { "neo-tree" },
         },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename" },
+          lualine_c = {
+            {
+              "filename",
+              path = 1,            -- Display full file path
+              file_status = true,  -- Show file status (modified, etc.)
+              path_separator = ' > ' -- Separator between folder and file name
+            }
+          },
           lualine_x = { "encoding", "fileformat", "filetype" },
           lualine_y = { "progress" },
           lualine_z = { "location" },
