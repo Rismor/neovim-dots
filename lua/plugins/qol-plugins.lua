@@ -37,8 +37,24 @@ return {
         "3rd/image.nvim",              -- image support in preview window: See `# Preview Mode` for more information
       },
       keys = {
-        {"<C-n>", "<cmd>Neotree toggle=true<CR>"}
+        { "<C-n>", "<cmd>Neotree toggle=true<CR>" }
       }
     }
   },
+  {
+    {
+      "jackMort/ChatGPT.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("chatgpt").setup({
+          api_key_cmd = "secret-tool lookup openai neovim"
+        })
+      end,
+      dependencies = {
+        "MunifTanjim/nui.nvim",
+        "nvim-lua/plenary.nvim",
+        "nvim-telescope/telescope.nvim"
+      }
+    }
+  }
 }

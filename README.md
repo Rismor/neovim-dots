@@ -5,3 +5,5 @@ vim.
 
 ⚠️ WARN ⚠️
 This config may break from time to time , sorry.
+
+- This will ask you for your pasword, um..... 😅
