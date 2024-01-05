@@ -103,7 +103,8 @@ return {
     },
     config = function()
       require 'nvim-treesitter.configs'.setup {
-        highlight = { enable = true }
+        highlight = { enable = true },
+        autotag = { enable = true }
       }
       -- local opts = {
       --   highlight = { enable = true },
@@ -112,7 +113,18 @@ return {
       --  }
     end
   },
-  "windwp/nvim-ts-autotag",        -- use ts to close tags
-  "nvim-ts-context-commentstring", -- use ts to comment
+  "windwp/nvim-ts-autotag", -- use ts to close tags
+
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+      }
+    end
+  }
+
+
 
 }
