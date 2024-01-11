@@ -5,10 +5,6 @@ return {
       require('vscode').setup({
         style = 'dark',
         italic_comments = true,
-        disable_nvimtree_bg = false,
-        color_overrides = {
-          vscLineNumber = '#FFFFFF',
-        },
       })
       vim.cmd([[colorscheme vscode]])
     end
