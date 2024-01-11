@@ -1,13 +1,18 @@
 return {
-  "nvim-lua/popup.nvim",                       -- required for a bunch of plugins
-  "folke/trouble.nvim",                        -- pretty list of diagnostics and quickfixes
-  "nvim-lua/plenary.nvim",                     -- required for a bunch of plugins
-  "tpope/vim-surround",                        -- change Surround
-  "tpope/vim-repeat",                          -- hack vim .
-  "tpope/vim-commentary",                      -- gcc comments
-  "ggandor/leap.nvim",                         -- movement plugin
-  "Shougo/neomru.vim",                         -- track recently visitied files
-  "folke/trouble.nvim",
+  "nvim-lua/popup.nvim",   -- required for a bunch of plugins
+  "folke/trouble.nvim",    -- pretty list of diagnostics and quickfixes
+  "nvim-lua/plenary.nvim", -- required for a bunch of plugins
+  "tpope/vim-surround",    -- change Surround
+  "tpope/vim-repeat",      -- hack vim .
+  "tpope/vim-commentary",  -- gcc comments
+  "ggandor/leap.nvim",     -- movement plugin
+  "Shougo/neomru.vim",     -- track recently visitied files
+  {
+    "folke/trouble.nvim",
+    keys = {
+      { "<leader>lp", "<cmd>Trouble<cr>", "open the trouble window" }
+    }
+  },
   { "TimUntersberger/neogit", config = true }, -- neogit.
   {
     "windwp/nvim-autopairs",
