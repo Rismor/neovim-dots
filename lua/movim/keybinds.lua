@@ -11,7 +11,7 @@ vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {})
 -- Buffer keybinds --
 vim.api.nvim_set_keymap('n', '<leader>]', ':bnext<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>[', ':bprev<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>D', ':bd<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>d', ':bd<CR>', {})
 
 
 -- Copy Paste binds --
