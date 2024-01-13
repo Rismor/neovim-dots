@@ -1,4 +1,4 @@
-set splitright
+set splitbelow
 set encoding=UTF-8
 set diffopt+=vertical
 set noswapfile
@@ -15,44 +15,11 @@ set expandtab
 set shiftwidth=2
 set completeopt=menu,menuone,preview,noselect,noinsert
 
-set laststatus=2
+" set laststatus=2
 set mouse =a
-
-
 set hidden
-set ignorecase
 
-
-
-" let &t_ut=''
-autocmd filetype markdown syn region match start=/\\$\\$/ end=/\\$\\$/
-autocmd filetype markdown syn match math '\\$[^$].\{-}\$'
 autocmd InsertEnter * norm zz
-
-
-
-"asd 
-
-
-" ================================================ "
-"  _  __              ____   _             _       "
-" | |/ /             |  _ \ (_)           | |      "
-" | ' /  ___  _   _  | |_) | _  _ __    __| | ___  "
-" |  <  / _ \| | | | |  _ < | || '_ \  / _` |/ __| "
-" | . \|  __/| |_| | | |_) || || | | || (_| |\__ \ "
-" |_|\_\\___| \__, | |____/ |_||_| |_| \__,_||___/ "
-"             __/ |                                "
-"            |___/                                 "
-" ================================================ "
-
-inoremap <expr> <Tab> search('\%#[]>)}$''"`]', 'n') ? '<Right>' : '<Tab>'
-
-
-
-
-
-
-
 
 
 
@@ -61,22 +28,6 @@ ab arr →
 
 
 
-set path+=**
-set wildmenu
-
-
-
 set iskeyword-=_ 
-
-
-
-
-let g:UltiSnipsEditSplit="vertical"
-
-
-
-
-
-
 
 
