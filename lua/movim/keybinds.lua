@@ -73,3 +73,23 @@ _G.smart_tab = function()
   end
 end
 vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.smart_tab()', { expr = true, noremap = true, silent = true })
+
+
+
+-- Function to insert console.log with the current word and filename
+_G.insert_console_log = function()    -- Get the current word
+    local current_word = vim.fn.expand("<cword>")
+
+    -- Get the filename
+    local filename = vim.fn.expand("%:t")
+
+    -- Construct the log string
+    local log_str = string.format("console.log(`%s %s ${%s} ${typeof %s}`)", filename, current_word, current_word, current_word)
+
+    -- Insert the log string on the line below
+    local current_line = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_buf_set_lines(0, current_line, current_line, false, {log_str})
+end
+
+-- Set the keybinding
+vim.api.nvim_set_keymap('n', '<leader>lc', ':lua insert_console_log()<CR>', {noremap = true, silent = true})
