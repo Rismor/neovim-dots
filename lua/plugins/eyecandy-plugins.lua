@@ -59,4 +59,5 @@ return {
     end
   },
   { "nvim-tree/nvim-web-devicons", lazy = true }, -- eye candy icons for nvim-tree
+{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
 }
