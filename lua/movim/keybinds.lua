@@ -44,9 +44,6 @@ vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics<CR>', { norem
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
 
-
-
-
 vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward-to)')
 
 
