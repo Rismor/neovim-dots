@@ -31,8 +31,8 @@ vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent = true })
 
 -- Telescope Keybinds --
--- vim.api.nvim_set_keymap('n', '<leader>gs', ':Neogit<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>gs', ':Neogit<CR>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope git_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fp', ':Telescope find_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cc', ':Telescope colorscheme<CR>', { noremap = true, silent = true })
