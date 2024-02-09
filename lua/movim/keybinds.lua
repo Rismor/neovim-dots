@@ -28,8 +28,7 @@ vim.api.nvim_set_keymap('n', 'K', 'ddkP', { noremap = true, silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>m', ':make<CR>', { noremap = true, silent = true })
-
+vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent = true })
 
 -- Telescope Keybinds --
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Neogit<CR>', { noremap = true })
