@@ -2,7 +2,6 @@ return {
   "wesleimp/stylua.nvim",         -- required for stylua
   "j-hui/fidget.nvim",            -- Install information for lsps
   "nvim-lua/lsp_extensions.nvim", -- extends the lsp (inlay hints, diagnostics)
-  "wesleimp/stylua.nvim",         -- required for stylua
   {
     "neovim/nvim-lspconfig",
     dependencies = {
