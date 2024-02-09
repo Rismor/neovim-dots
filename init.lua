@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.updatetime = 100
+vim.opt.clipboard = "unnamedplus"
 
 
 -- Bootstrap LazyVim
