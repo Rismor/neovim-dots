@@ -30,4 +30,28 @@ ab arr →
 
 set iskeyword-=_ 
 
+nnoremap <silent> <Leader>fp :call fzf#run({
+\   'source': 'sed "1d" $HOME/.cache/neomru/file',
+\   'sink': 'e '
+\ })<CR>
 
+
+function! SetCwdToGitRoot()
+    " Save the current file name
+    let l:current_file = expand('%:p')
+    if l:current_file == '' || !filereadable(l:current_file)
+        " If no file is open or if the file isn't readable, don't change the cwd
+        return
+    endif
+
+    " Find the .git directory or file starting from the directory of the current file and going up
+    let l:git_root = finddir('.git', expand('%:p:h').';')
+    if l:git_root != ''
+        " If a .git directory or file is found, change to its parent directory
+        let l:git_root_dir = fnamemodify(l:git_root, ':h')
+        execute 'cd ' . l:git_root_dir
+    endif
+endfunction
+
+" Call SetCwdToGitRoot function whenever a buffer is entered
+autocmd BufEnter * call SetCwdToGitRoot()
