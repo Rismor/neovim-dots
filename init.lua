@@ -22,7 +22,5 @@ require("lazy").setup("plugins")
 
 
 vim.cmd("source ~/.config/nvim/main.vim")
-vim.cmd('set clipboard+=unnamedplus')
-
 require("movim.keybinds")
 
