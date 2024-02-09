@@ -109,4 +109,8 @@ return {
     end
   },
   { "TimUntersberger/neogit", config = true }, -- neogit.
+  {'junegunn/fzf.vim',
+    dependencies = { 'junegunn/fzf' }
+  }
 }
+
