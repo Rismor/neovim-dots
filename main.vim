@@ -30,7 +30,7 @@ ab arr →
 
 set iskeyword-=_ 
 
-nnoremap <silent> <Leader>fp :call fzf#run({
+nnoremap <silent> <Leader>fs :call fzf#run({
 \   'source': 'sed "1d" $HOME/.cache/neomru/file',
 \   'sink': 'e '
 \ })<CR>
