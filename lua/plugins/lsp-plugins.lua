@@ -181,7 +181,11 @@ return {
 
 
   {
-    "nvim-treesitter/nvim-treesitter",
+   "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-context", -- context using treesitter
+    "windwp/nvim-ts-autotag", -- use ts to close tags
+    },
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
