@@ -83,6 +83,94 @@ return {
 
   },
 
+
+  {
+    "mhartington/formatter.nvim", -- Format plugin for neovim
+    config = function()
+      require("formatter").setup({
+        logging = false,
+        filetype = {
+          javascript = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          typescript = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          lua = {
+            -- stylua
+            function()
+              return {
+                exe = "stylua",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          svelte = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          html = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          css = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+          json = {
+            -- prettier
+            function()
+              return {
+                exe = "prettier",
+                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                stdin = true
+              }
+            end
+          },
+        }
+      })
+    end,
+    keys = {
+      { "<leader>lf", "<cmd>FormatWrite<CR>", desc = "Format file" }, 
+    },
+    lazy = false;
+
+
+  },
+
   {
     "Maan2003/lsp_lines.nvim",
     config = function()
