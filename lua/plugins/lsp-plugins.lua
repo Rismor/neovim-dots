@@ -198,24 +198,24 @@ return {
         autotag = { enable = true }
       }
       -- local opts = {
-      --   highlight = { enable = true },
-      --   indent = { enable = true },
-      --   ensure_installed = { 'svelte' }
-      --  }
-    end
-  },
-  "windwp/nvim-ts-autotag", -- use ts to close tags
+        --   highlight = { enable = true },
+        --   indent = { enable = true },
+        --   ensure_installed = { 'svelte' }
+        --  }
+      end
+    },
 
-  {
-    "JoosepAlviste/nvim-ts-context-commentstring",
-    config = function()
 
-      require('ts_context_commentstring').setup {
-        enable_autocmd = false,
-      }
-    end
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      config = function()
+        require('ts_context_commentstring').setup {
+          enable_autocmd = false,
+        }
+      end
+    },
+
+    "github/copilot.vim",
+
+
   }
-
-
-
-}
