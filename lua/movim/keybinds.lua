@@ -14,19 +14,9 @@ vim.api.nvim_set_keymap('n', '<leader>[', ':bprev<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>d', ':bd<CR>', {})
 
 
--- Copy Paste binds --
-vim.api.nvim_set_keymap('n', '<leader>p', '"+p', {})
-vim.api.nvim_set_keymap('v', '<leader>p', '"+p', {})
-vim.api.nvim_set_keymap('i', '<C-v>', '<Esc>"+p', {})
-
-vim.api.nvim_set_keymap('n', '<leader>y', '"+y', {})
-vim.api.nvim_set_keymap('v', '<leader>y', '"+y', {})
-
 -- Jumpto Directory keybinds --
-vim.api.nvim_set_keymap('n', '<leader>cds', ':e ~/Documents/School/mod4/<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>cdd', ':e ~/Documents/Development/<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>cdn', ':e ~/.config/nvim/init.lua<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>r', ':e ~/.reminders<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>r', ':e ~/org/todo.org<CR>', { noremap = true })
 
 -- General Keybinds --
 vim.api.nvim_set_keymap('n', '<leader>o', ':setlocal spell! spelllang=en_us<CR>', {})
