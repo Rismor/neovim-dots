@@ -35,7 +35,6 @@ vim.api.nvim_set_keymap('n', '<leader>m', ':!make<CR>', { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<leader>gs', ':Git<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fr', ':Telescope git_files<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fp', ':Telescope find_files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>gc', ':Telescope git_commits<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cc', ':Telescope colorscheme<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gd', "<cmd>Telescope lsp_definitions<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>gr', "<cmd>Telescope lsp_references<CR>", { noremap = true, silent = true })
@@ -45,6 +44,7 @@ vim.api.nvim_set_keymap('n', '<leader>s', ':Telescope spell_suggest<CR>', { nore
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
+vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
 vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward-to)')
 
