@@ -55,3 +55,5 @@ endfunction
 
 " Call SetCwdToGitRoot function whenever a buffer is entered
 autocmd BufEnter * call SetCwdToGitRoot()
+
+nnoremap <leader>ll oconsole.log("Count: ", ++count);<CR><Esc>
