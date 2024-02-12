@@ -174,9 +174,9 @@ return {
       })
     end,
     keys = {
-      { "<leader>lf", "<cmd>FormatWrite<CR>", desc = "Format file" }, 
+      { "<leader>lf", "<cmd>FormatWrite<CR>", desc = "Format file" },
     },
-    lazy = false;
+    lazy = false,
 
 
   },
@@ -191,10 +191,10 @@ return {
 
 
   {
-   "nvim-treesitter/nvim-treesitter",
+    "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context", -- context using treesitter
-    "windwp/nvim-ts-autotag", -- use ts to close tags
+      "windwp/nvim-ts-autotag",                  -- use ts to close tags
     },
     build = ":TSUpdate",
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
@@ -208,24 +208,24 @@ return {
         autotag = { enable = true }
       }
       -- local opts = {
-        --   highlight = { enable = true },
-        --   indent = { enable = true },
-        --   ensure_installed = { 'svelte' }
-        --  }
-      end
-    },
+      --   highlight = { enable = true },
+      --   indent = { enable = true },
+      --   ensure_installed = { 'svelte' }
+      --  }
+    end
+  },
 
 
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      config = function()
-        require('ts_context_commentstring').setup {
-          enable_autocmd = false,
-        }
-      end
-    },
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    config = function()
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+      }
+    end
+  },
 
-    "github/copilot.vim",
+  "github/copilot.vim",
 
 
-  }
+}
