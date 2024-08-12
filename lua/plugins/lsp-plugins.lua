@@ -25,6 +25,7 @@ return {
           "lua_ls",
           "svelte",
           "tsserver",
+          "pylsp"
         },
         handlers = {
           function(server_name) -- default handler
@@ -51,13 +52,27 @@ return {
                 }
               }
             }
+          end,
+          ['pylsp'] = function()
+            local lspconfig = require('lspconfig')
+            lspconfig.pylsp.setup {
+              settings = {
+                pylsp = {
+                  plugins = {
+                    pycodestyle = {
+                      ignore = { 'E501', 'E741' }
+                    }
+                  }
+                }
+              }
+
+            }
           end
         }
       })
 
       local cmp = require('cmp')
       local luasnip = require('luasnip')
-
 
 
       cmp.setup({
@@ -225,7 +240,6 @@ return {
     end
   },
 
-  "github/copilot.vim",
 
 
 }

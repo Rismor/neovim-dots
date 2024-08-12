@@ -1,12 +1,31 @@
 return {
-  "nvim-lua/popup.nvim",   -- required for a bunch of plugins
-  "folke/trouble.nvim",    -- pretty list of diagnostics and quickfixes
-  "nvim-lua/plenary.nvim", -- required for a bunch of plugins
-  "tpope/vim-surround",    -- change Surround
-  "tpope/vim-repeat",      -- hack vim .
-  "tpope/vim-commentary",  -- gcc comments
-  "ggandor/leap.nvim",     -- movement plugin
-  "Shougo/neomru.vim",     -- track recently visitied files
+  "nvim-lua/popup.nvim",             -- required for a bunch of plugins
+  "folke/trouble.nvim",              -- pretty list of diagnostics and quickfixes
+  "nvim-lua/plenary.nvim",           -- required for a bunch of plugins
+  "tpope/vim-surround",              -- change Surround
+  "tpope/vim-repeat",                -- hack vim .
+  "tpope/vim-commentary",            -- gcc comments
+  "ggandor/leap.nvim",               -- movement plugin
+  "Shougo/neomru.vim",               -- track recently visitied files
+  {
+    'cameron-wags/rainbow_csv.nvim', -- rainbow csv
+    config = true,
+    ft = {
+      'csv',
+      'tsv',
+      'csv_semicolon',
+      'csv_whitespace',
+      'csv_pipe',
+      'rfc_csv',
+      'rfc_semicolon'
+    },
+    cmd = {
+      'RainbowDelim',
+      'RainbowDelimSimple',
+      'RainbowDelimQuoted',
+      'RainbowMultiDelim'
+    }
+  },
   {
     "folke/trouble.nvim",
     keys = {
@@ -45,20 +64,7 @@ return {
       }
     }
   },
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup({
-        api_key_cmd = "secret-tool lookup openai neovim"
-      })
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
-    }
-  },
+
   "tpope/vim-fugitive",
   {
     "lewis6991/gitsigns.nvim",
@@ -101,16 +107,15 @@ return {
           relative = 'cursor',
           row = 0,
           col = 1
-        },
-        yadm                         = {
-          enable = false
-        },
+        }
       }
     end
   },
   { "TimUntersberger/neogit", config = true }, -- neogit.
-  {'junegunn/fzf.vim',
+  {
+    'junegunn/fzf.vim',
     dependencies = { 'junegunn/fzf' }
-  }
+  },
+  { "ahmedkhalf/project.nvim" },
+  { "stevearc/oil.nvim" }
 }
-

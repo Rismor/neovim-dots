@@ -12,9 +12,8 @@ return {
 
   { "nvim-telescope/telescope.nvim" }, -- popup windows
   { 'MunifTanjim/prettier.nvim' },     -- opinionated formatter
-  { "telescope-ui-select.nvim" },      -- popup telescope window on select prompts
   { "stevearc/dressing.nvim" },        -- popup window for mason filter language
-  { "telescope-ui-select.nvim" },      -- popup telescope window on select prompts
+  { "nvim-telescope/telescope-ui-select.nvim" },      -- popup telescope window on select prompts
   { "stevearc/dressing.nvim" },        -- popup window for mason filter language
   { "machakann/vim-highlightedyank" }, -- highlight the yanked text
   {
