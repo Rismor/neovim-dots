@@ -3,7 +3,10 @@ vim.api.nvim_set_keymap('n', '<leader>w', '<C-w>', {})
 vim.api.nvim_set_keymap('n', '<leader><Tab>', '<C-^>', {})
 
 -- LSP Bindings --
-vim.api.nvim_set_keymap('n', '<leader>lf', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>lf', ':lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lf',
+  [[:lua if vim.bo.filetype == 'python' then vim.cmd('write | !black %') else vim.lsp.buf.format({ async = true }) end<CR>]],
+  { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>lk', ':lua vim.lsp.buf.hover()<CR>', {})
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {})
