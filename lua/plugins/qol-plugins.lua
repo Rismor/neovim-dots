@@ -1,6 +1,5 @@
 return {
   "nvim-lua/popup.nvim",             -- required for a bunch of plugins
-  "folke/trouble.nvim",              -- pretty list of diagnostics and quickfixes
   "nvim-lua/plenary.nvim",           -- required for a bunch of plugins
   "tpope/vim-surround",              -- change Surround
   "tpope/vim-repeat",                -- hack vim .

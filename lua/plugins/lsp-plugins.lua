@@ -15,7 +15,9 @@ return {
       "hrsh7th/cmp-emoji",        -- suggest from emojis
       "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions,
       "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions
+      "psf/black",                -- black for neovim
     },
+
 
     config = function()
       require("mason").setup()
@@ -60,8 +62,8 @@ return {
                 pylsp = {
                   plugins = {
                     pycodestyle = {
-                      ignore = { 'E501', 'E741' }
-                    }
+                      ignore = { 'W291', 'W503', 'E501', 'E741' }
+                    },
                   }
                 }
               }
@@ -239,7 +241,6 @@ return {
       }
     end
   },
-
 
 
 }

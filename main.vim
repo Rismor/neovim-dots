@@ -2,7 +2,7 @@ set splitbelow
 set encoding=UTF-8
 set diffopt+=vertical
 set noswapfile
-set tw=79
+set tw=0
 set fo+=t
 set wm=2
 set number rnu
@@ -57,3 +57,4 @@ endfunction
 autocmd BufEnter * call SetCwdToGitRoot()
 
 " nnoremap <leader>ll oconsole.log("Count: ", ++count);<CR><Esc>
+highlight TreesitterContext guibg=none
