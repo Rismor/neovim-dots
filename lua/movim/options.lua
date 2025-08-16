@@ -15,12 +15,13 @@ vim.opt.relativenumber = true                -- Show relative line numbers
 vim.opt.scrolloff      = 8                   -- Minimum number of lines to keep above and below cursor
 -- vim.opt.guifont        = "Cascadia Code:h10" -- Editor Font
 vim.opt.guifont        = "CaskaydiaMono Nerd Font:h10" -- Editor Font
-vim.opt.textwidth      = 79                  -- Wrap lines that are longer than this
+vim.opt.textwidth      = 0                   -- Disable automatic text wrapping (0 = no limit)
 vim.opt.swapfile       = false               -- Enable/Disable Swap file
 vim.opt.pumblend       = 20                  -- Psuedo transparency for the popup-menu
 vim.opt.termguicolors  = true                -- Enable gui terminal colors
-vim.opt.wrapmargin     = 2                   -- Number of characters from the right windows border where wrapping starts
+vim.opt.wrapmargin     = 0                   -- Disable wrap margin
 vim.opt.completeopt    ={"menu", "menuone", "noselect", "noinsert"}
-vim.opt.formatoptions  = "cqjt"
+vim.opt.formatoptions  = "cqj"              -- Remove 't' to disable auto-wrapping of text
+vim.opt.wrap           = false               -- Disable visual line wrapping
 -- vim.opt.gcr           += "i:ver100-iCursor"
 

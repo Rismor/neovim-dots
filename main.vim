@@ -3,8 +3,9 @@ set encoding=UTF-8
 set diffopt+=vertical
 set noswapfile
 set tw=0
-set fo+=t
-set wm=2
+set fo-=t
+set wm=0
+set wrap!
 set number rnu
 set shiftwidth=4
 set encoding=utf-8
