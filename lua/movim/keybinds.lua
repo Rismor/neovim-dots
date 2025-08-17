@@ -87,3 +87,19 @@ end
 
 -- Set the keybinding
 vim.api.nvim_set_keymap('n', '<leader>lc', ':lua insert_console_log()<CR>', { noremap = true, silent = true })
+
+
+-- Function to copy file path in folder/folder/filename.ext format
+_G.copy_file_path = function()
+  -- Get the current file path relative to the current working directory
+  local filepath = vim.fn.expand("%:.")
+  
+  -- Copy to system clipboard
+  vim.fn.setreg("+", filepath)
+  
+  -- Show a message to confirm the copy
+  vim.notify("Copied to clipboard: " .. filepath)
+end
+
+-- Set the keybinding for copying file path
+vim.api.nvim_set_keymap('n', '<leader>cp', ':lua copy_file_path()<CR>', { noremap = true, silent = true })
