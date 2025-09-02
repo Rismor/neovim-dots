@@ -21,57 +21,72 @@ return {
 
     config = function()
       require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "eslint",
-          "lua_ls",
-          "svelte",
-          "tsserver",
-          "pylsp"
-        },
-        handlers = {
-          function(server_name) -- default handler
-            require("lspconfig")[server_name].setup {}
-          end,
-          ['lua_ls'] = function()
-            local lspconfig = require('lspconfig')
-            lspconfig.lua_ls.setup {
+
+      local servers = { "eslint", "lua_ls", "svelte", "pylsp" }
+
+      local ok_mlsp, mlsp = pcall(require, "mason-lspconfig")
+      if ok_mlsp then
+        -- Configure mason-lspconfig; avoid features that may be incompatible
+        -- with the pinned nvim-lspconfig by disabling automatic installation.
+        mlsp.setup({
+          ensure_installed = servers,
+          automatic_installation = false,
+          automatic_enable = false,
+        })
+
+        -- Configure servers directly via lspconfig
+        local lspconfig = require("lspconfig")
+        for _, server_name in ipairs(servers) do
+          if server_name == "lua_ls" then
+            lspconfig.lua_ls.setup({
               settings = {
                 Lua = {
-                  diagnostics = {
-                    globals = { "vim" }
-                  }
-                }
-              }
-            }
-          end,
-          ['tsserver'] = function()
-            local lspconfig = require('lspconfig')
-            lspconfig.tsserver.setup {
-              init_options = {
-                preferences = {
-                  disableSuggestions = true
-                }
-              }
-            }
-          end,
-          ['pylsp'] = function()
-            local lspconfig = require('lspconfig')
-            lspconfig.pylsp.setup {
+                  diagnostics = { globals = { "vim" } },
+                },
+              },
+            })
+          elseif server_name == "pylsp" then
+            lspconfig.pylsp.setup({
               settings = {
                 pylsp = {
                   plugins = {
                     pycodestyle = {
-                      ignore = { 'W291', 'W503', 'E501', 'E741', "E203" }
+                      ignore = { "W291", "W503", "E501", "E741", "E203" },
                     },
-                  }
-                }
-              }
-
-            }
+                  },
+                },
+              },
+            })
+          else
+            lspconfig[server_name].setup({})
           end
-        }
-      })
+        end
+      else
+        -- Fallback: configure servers directly via lspconfig if mason-lspconfig
+        -- fails to load or initialize.
+        local lspconfig = require("lspconfig")
+        for _, server_name in ipairs(servers) do
+          if server_name == "lua_ls" then
+            lspconfig.lua_ls.setup({
+              settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+            })
+          elseif server_name == "pylsp" then
+            lspconfig.pylsp.setup({
+              settings = {
+                pylsp = {
+                  plugins = {
+                    pycodestyle = {
+                      ignore = { "W291", "W503", "E501", "E741", "E203" },
+                    },
+                  },
+                },
+              },
+            })
+          else
+            lspconfig[server_name].setup({})
+          end
+        end
+      end
 
       local cmp = require('cmp')
       local luasnip = require('luasnip')
@@ -203,7 +218,7 @@ return {
     config = function()
       require("lsp_lines").setup()
     end,
-    vim.diagnostic.config({ virtual_text = false })
+    vim.diagnostic.config({ virtual_text = true })
   },
 
 
@@ -222,13 +237,9 @@ return {
     config = function()
       require 'nvim-treesitter.configs'.setup {
         highlight = { enable = true },
+        indent = { enable = true },
         autotag = { enable = true }
       }
-      -- local opts = {
-      --   highlight = { enable = true },
-      --   indent = { enable = true },
-      --   ensure_installed = { 'svelte' }
-      --  }
     end
   },
 

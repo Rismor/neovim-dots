@@ -10,7 +10,7 @@ set number rnu
 set shiftwidth=4
 set encoding=utf-8
 set splitbelow splitright
-set smartindent
+" set smartindent  " Disabled in favor of Treesitter indent
 set tabstop=2
 set expandtab
 set shiftwidth=2

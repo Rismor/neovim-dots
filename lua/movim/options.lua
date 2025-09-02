@@ -2,7 +2,7 @@
 -- vim.opt.clipboard    = "unamedplus"        -- Allows neovim to access the system clipboard
 vim.opt.fileencoding   = "utf-8"             -- The encoding written to a file
 vim.opt.cmdheight      = 2                   -- More space in neovim command line
-vim.opt.smartindent    = true                -- Auto indent on new line
+-- vim.opt.smartindent    = true                -- Auto indent on new line (disabled in favor of Treesitter)
 vim.opt.mouse          = "a"                 -- Allow for mouse control
 vim.opt.splitbelow     = true                -- Force all horizontal splits to go below current buffer
 vim.opt.splitright     = true                -- Force all vertical splits to go to the right of buffer
