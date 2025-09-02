@@ -45,6 +45,7 @@ vim.api.nvim_set_keymap('n', '<leader>b', ':Telescope buffers<CR>', { noremap = 
 vim.api.nvim_set_keymap('n', '<leader>?', ':Telescope keymaps<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>s', ':Telescope spell_suggest<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ll', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 
@@ -103,3 +104,5 @@ end
 
 -- Set the keybinding for copying file path
 vim.api.nvim_set_keymap('n', '<leader>cp', ':lua copy_file_path()<CR>', { noremap = true, silent = true })
+
+-- Set the keybind for opening 
