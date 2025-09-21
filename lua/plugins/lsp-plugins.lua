@@ -24,6 +24,9 @@ return {
 
       local servers = { "eslint", "lua_ls", "svelte", "pylsp" }
 
+      -- Set up capabilities for completion
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       local ok_mlsp, mlsp = pcall(require, "mason-lspconfig")
       if ok_mlsp then
         -- Configure mason-lspconfig; avoid features that may be incompatible
@@ -34,19 +37,23 @@ return {
           automatic_enable = false,
         })
 
-        -- Configure servers directly via lspconfig
-        local lspconfig = require("lspconfig")
+        -- Configure servers directly via vim.lsp.config
         for _, server_name in ipairs(servers) do
           if server_name == "lua_ls" then
-            lspconfig.lua_ls.setup({
+            vim.lsp.config.lua_ls = {
+              filetypes = { "lua" },
+              capabilities = capabilities,
               settings = {
                 Lua = {
                   diagnostics = { globals = { "vim" } },
                 },
               },
-            })
+            }
+            vim.lsp.enable('lua_ls')
           elseif server_name == "pylsp" then
-            lspconfig.pylsp.setup({
+            vim.lsp.config.pylsp = {
+              filetypes = { "python" },
+              capabilities = capabilities,
               settings = {
                 pylsp = {
                   plugins = {
@@ -56,22 +63,36 @@ return {
                   },
                 },
               },
-            })
-          else
-            lspconfig[server_name].setup({})
+            }
+            vim.lsp.enable('pylsp')
+          elseif server_name == "eslint" then
+            vim.lsp.config.eslint = {
+              filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+              capabilities = capabilities,
+            }
+            vim.lsp.enable('eslint')
+          elseif server_name == "svelte" then
+            vim.lsp.config.svelte = {
+              filetypes = { "svelte" },
+              capabilities = capabilities,
+            }
+            vim.lsp.enable('svelte')
           end
         end
       else
-        -- Fallback: configure servers directly via lspconfig if mason-lspconfig
+        -- Fallback: configure servers directly via vim.lsp.config if mason-lspconfig
         -- fails to load or initialize.
-        local lspconfig = require("lspconfig")
         for _, server_name in ipairs(servers) do
           if server_name == "lua_ls" then
-            lspconfig.lua_ls.setup({
+            vim.lsp.config.lua_ls = {
+              filetypes = { "lua" },
               settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-            })
+            }
+            vim.lsp.enable('lua_ls')
           elseif server_name == "pylsp" then
-            lspconfig.pylsp.setup({
+            vim.lsp.config.pylsp = {
+              filetypes = { "python" },
+              capabilities = capabilities,
               settings = {
                 pylsp = {
                   plugins = {
@@ -81,9 +102,20 @@ return {
                   },
                 },
               },
-            })
-          else
-            lspconfig[server_name].setup({})
+            }
+            vim.lsp.enable('pylsp')
+          elseif server_name == "eslint" then
+            vim.lsp.config.eslint = {
+              filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+              capabilities = capabilities,
+            }
+            vim.lsp.enable('eslint')
+          elseif server_name == "svelte" then
+            vim.lsp.config.svelte = {
+              filetypes = { "svelte" },
+              capabilities = capabilities,
+            }
+            vim.lsp.enable('svelte')
           end
         end
       end
