@@ -147,5 +147,9 @@ return {
     dependencies = { 'junegunn/fzf' }
   },
   { "ahmedkhalf/project.nvim" },
-  { "stevearc/oil.nvim" }
+  { "stevearc/oil.nvim" },
+  {
+    "folke/todo-comments.nvim",
+    config = true, -- Uses defaults; customize as needed (see docs)
+  }
 }

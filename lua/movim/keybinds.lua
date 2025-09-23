@@ -52,6 +52,7 @@ vim.api.nvim_set_keymap('n', '<leader>llv', ':lua require("telescope.builtin").l
 vim.api.nvim_set_keymap('n', '<leader>llf', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"function"} })<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>st', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
