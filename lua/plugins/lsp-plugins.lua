@@ -22,7 +22,7 @@ return {
     config = function()
       require("mason").setup()
 
-      local servers = { "eslint", "lua_ls", "svelte", "pylsp" }
+      local servers = { "eslint", "lua_ls", "svelte", "basedpyright" }
 
       -- Set up capabilities for completion
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -50,21 +50,24 @@ return {
               },
             }
             vim.lsp.enable('lua_ls')
-          elseif server_name == "pylsp" then
-            vim.lsp.config.pylsp = {
+          elseif server_name == "basedpyright" then
+            vim.lsp.config.basedpyright = {
+              cmd = { "basedpyright-langserver", "--stdio" },
               filetypes = { "python" },
+              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+              single_file_support = true,
               capabilities = capabilities,
               settings = {
-                pylsp = {
-                  plugins = {
-                    pycodestyle = {
-                      ignore = { "W291", "W503", "E501", "E741", "E203" },
-                    },
+                basedpyright = {
+                  analysis = {
+                    typeCheckingMode = "basic",
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
                   },
                 },
               },
             }
-            vim.lsp.enable('pylsp')
+            vim.lsp.enable('basedpyright')
           elseif server_name == "eslint" then
             vim.lsp.config.eslint = {
               filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
@@ -89,21 +92,24 @@ return {
               settings = { Lua = { diagnostics = { globals = { "vim" } } } },
             }
             vim.lsp.enable('lua_ls')
-          elseif server_name == "pylsp" then
-            vim.lsp.config.pylsp = {
+          elseif server_name == "basedpyright" then
+            vim.lsp.config.basedpyright = {
+              cmd = { "basedpyright-langserver", "--stdio" },
               filetypes = { "python" },
+              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+              single_file_support = true,
               capabilities = capabilities,
               settings = {
-                pylsp = {
-                  plugins = {
-                    pycodestyle = {
-                      ignore = { "W291", "W503", "E501", "E741", "E203" },
-                    },
+                basedpyright = {
+                  analysis = {
+                    typeCheckingMode = "basic",
+                    autoSearchPaths = true,
+                    useLibraryCodeForTypes = true,
                   },
                 },
               },
             }
-            vim.lsp.enable('pylsp')
+            vim.lsp.enable('basedpyright')
           elseif server_name == "eslint" then
             vim.lsp.config.eslint = {
               filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
