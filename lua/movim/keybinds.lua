@@ -46,11 +46,11 @@ vim.api.nvim_set_keymap('n', '<leader>bb', ':Telescope buffers<CR>', { noremap =
 vim.api.nvim_set_keymap('n', '<leader>?', ':Telescope keymaps<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>s', ':Telescope spell_suggest<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ld', ':Telescope diagnostics<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>lll', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>llm', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"method"} })<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>llc', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"class"} })<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>llv', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"variable"} })<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>llf', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"function"} })<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ll', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lm', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"method"} })<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lc', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"class"} })<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lv', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"variable"} })<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lF', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"function"} })<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>st', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true })
@@ -74,26 +74,6 @@ _G.smart_tab = function()
 end
 vim.api.nvim_set_keymap('i', '<Tab>', 'v:lua.smart_tab()', { expr = true, noremap = true, silent = true })
 
-
-
--- Function to insert console.log with the current word and filename
-_G.insert_console_log = function() -- Get the current word
-  local current_word = vim.fn.expand("<cword>")
-
-  -- Get the filename
-  local filename = vim.fn.expand("%:t")
-
-  -- Construct the log string
-  local log_str = string.format("console.log(`%s %s ${%s} ${typeof %s}`)", filename, current_word, current_word,
-    current_word)
-
-  -- Insert the log string on the line below
-  local current_line = vim.api.nvim_win_get_cursor(0)[1]
-  vim.api.nvim_buf_set_lines(0, current_line, current_line, false, { log_str })
-end
-
--- Set the keybinding
-vim.api.nvim_set_keymap('n', '<leader>lc', ':lua insert_console_log()<CR>', { noremap = true, silent = true })
 
 
 -- Function to copy file path in folder/folder/filename.ext format
