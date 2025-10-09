@@ -9,6 +9,7 @@ vim.api.nvim_set_keymap('n', '<leader>lf',
   { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>.', ':lua vim.lsp.buf.code_action()<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>lk', ':lua vim.lsp.buf.hover()<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>lr', ':e<CR>', {})
 vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', {})
 
 -- Buffer keybinds --
