@@ -22,10 +22,18 @@ return {
     config = function()
       require("mason").setup()
 
-      local servers = { "eslint", "lua_ls", "svelte", "basedpyright" }
+      local servers = { "eslint", "lua_ls", "svelte", "basedpyright", "ruff" }
 
       -- Set up capabilities for completion
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      
+      -- Set up on_attach for navbuddy
+      local on_attach = function(client, bufnr)
+        if client.server_capabilities.documentSymbolProvider then
+          local navbuddy = require("nvim-navbuddy")
+          navbuddy.attach(client, bufnr)
+        end
+      end
 
       local ok_mlsp, mlsp = pcall(require, "mason-lspconfig")
       if ok_mlsp then
@@ -43,6 +51,7 @@ return {
             vim.lsp.config.lua_ls = {
               filetypes = { "lua" },
               capabilities = capabilities,
+              on_attach = on_attach,
               settings = {
                 Lua = {
                   diagnostics = { globals = { "vim" } },
@@ -57,6 +66,7 @@ return {
               root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
               single_file_support = true,
               capabilities = capabilities,
+              on_attach = on_attach,
               settings = {
                 basedpyright = {
                   analysis = {
@@ -72,12 +82,31 @@ return {
             vim.lsp.config.eslint = {
               filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
               capabilities = capabilities,
+              on_attach = on_attach,
             }
             vim.lsp.enable('eslint')
+          elseif server_name == "ruff" then
+            vim.lsp.config.ruff = {
+              cmd = { "ruff", "server", "--preview" },
+              filetypes = { "python" },
+              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+              single_file_support = true,
+              capabilities = capabilities,
+              on_attach = on_attach,
+              init_options = {
+                settings = {
+                  -- Ruff settings here
+                  organizeImports = true,
+                  fixAll = true,
+                }
+              }
+            }
+            vim.lsp.enable('ruff')
           elseif server_name == "svelte" then
             vim.lsp.config.svelte = {
               filetypes = { "svelte" },
               capabilities = capabilities,
+              on_attach = on_attach,
             }
             vim.lsp.enable('svelte')
           end
@@ -89,6 +118,7 @@ return {
           if server_name == "lua_ls" then
             vim.lsp.config.lua_ls = {
               filetypes = { "lua" },
+              on_attach = on_attach,
               settings = { Lua = { diagnostics = { globals = { "vim" } } } },
             }
             vim.lsp.enable('lua_ls')
@@ -99,6 +129,7 @@ return {
               root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
               single_file_support = true,
               capabilities = capabilities,
+              on_attach = on_attach,
               settings = {
                 basedpyright = {
                   analysis = {
@@ -114,12 +145,31 @@ return {
             vim.lsp.config.eslint = {
               filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
               capabilities = capabilities,
+              on_attach = on_attach,
             }
             vim.lsp.enable('eslint')
+          elseif server_name == "ruff" then
+            vim.lsp.config.ruff = {
+              cmd = { "ruff", "server", "--preview" },
+              filetypes = { "python" },
+              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+              single_file_support = true,
+              capabilities = capabilities,
+              on_attach = on_attach,
+              init_options = {
+                settings = {
+                  -- Ruff settings here
+                  organizeImports = true,
+                  fixAll = true,
+                }
+              }
+            }
+            vim.lsp.enable('ruff')
           elseif server_name == "svelte" then
             vim.lsp.config.svelte = {
               filetypes = { "svelte" },
               capabilities = capabilities,
+              on_attach = on_attach,
             }
             vim.lsp.enable('svelte')
           end

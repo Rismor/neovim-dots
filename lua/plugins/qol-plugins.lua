@@ -151,5 +151,16 @@ return {
   {
     "folke/todo-comments.nvim",
     config = true, -- Uses defaults; customize as needed (see docs)
+  },
+  {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = { lsp = { auto_attach = true } },
+    keys = {
+      { "<leader>ln", "<cmd>Navbuddy<cr>", desc = "Nav" },
+    }
   }
 }
