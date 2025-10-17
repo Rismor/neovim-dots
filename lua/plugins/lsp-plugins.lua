@@ -68,6 +68,15 @@ return {
                   typeCheckingMode = "basic",
                   autoSearchPaths = true,
                   useLibraryCodeForTypes = true,
+                  diagnosticSeverityOverrides = {
+                    reportLineLength = "none", -- Ignore line length
+                  },
+                },
+              },
+              python = {
+                linting = {
+                  pylintEnabled = false,
+                  pycodestyleEnabled = false, -- Disable pycodestyle
                 },
               },
             },
@@ -85,6 +94,9 @@ return {
               settings = {
                 organizeImports = true,
                 fixAll = true,
+                lint = {
+                  ignore = { "E501" }, -- Ignore line too long
+                }
               }
             }
           }
