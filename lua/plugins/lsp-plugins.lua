@@ -13,7 +13,6 @@ return {
       "hrsh7th/cmp-buffer",       -- suggest from buffer
       "hrsh7th/cmp-path",         -- suggest from path
       "hrsh7th/cmp-emoji",        -- suggest from emojis
-      "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions,
       "ray-x/lsp_signature.nvim", -- get signature hints (args) for functions
       "psf/black",                -- black for neovim
     },
@@ -22,7 +21,7 @@ return {
     config = function()
       require("mason").setup()
 
-      local servers = { "eslint", "lua_ls", "svelte", "basedpyright", "ruff" }
+      local servers = { "lua_ls", "basedpyright", "ruff" }
 
       -- Set up capabilities for completion
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -35,144 +34,61 @@ return {
         end
       end
 
-      local ok_mlsp, mlsp = pcall(require, "mason-lspconfig")
-      if ok_mlsp then
-        -- Configure mason-lspconfig; avoid features that may be incompatible
-        -- with the pinned nvim-lspconfig by disabling automatic installation.
-        mlsp.setup({
-          ensure_installed = servers,
-          automatic_installation = false,
-          automatic_enable = false,
-        })
+      -- Configure mason-lspconfig
+      require("mason-lspconfig").setup({
+        ensure_installed = { "basedpyright", "ruff" }, -- Only Python servers auto-installed
+        automatic_installation = false,
+      })
 
-        -- Configure servers directly via vim.lsp.config
-        for _, server_name in ipairs(servers) do
-          if server_name == "lua_ls" then
-            vim.lsp.config.lua_ls = {
-              filetypes = { "lua" },
-              capabilities = capabilities,
-              on_attach = on_attach,
-              settings = {
-                Lua = {
-                  diagnostics = { globals = { "vim" } },
+      -- Configure servers directly via vim.lsp.config
+      for _, server_name in ipairs(servers) do
+        if server_name == "lua_ls" then
+          vim.lsp.config.lua_ls = {
+            filetypes = { "lua" },
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+              Lua = {
+                diagnostics = { globals = { "vim" } },
+              },
+            },
+          }
+          vim.lsp.enable('lua_ls')
+        elseif server_name == "basedpyright" then
+          vim.lsp.config.basedpyright = {
+            cmd = { "basedpyright-langserver", "--stdio" },
+            filetypes = { "python" },
+            root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+            single_file_support = true,
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+              basedpyright = {
+                analysis = {
+                  typeCheckingMode = "basic",
+                  autoSearchPaths = true,
+                  useLibraryCodeForTypes = true,
                 },
               },
-            }
-            vim.lsp.enable('lua_ls')
-          elseif server_name == "basedpyright" then
-            vim.lsp.config.basedpyright = {
-              cmd = { "basedpyright-langserver", "--stdio" },
-              filetypes = { "python" },
-              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
-              single_file_support = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
+            },
+          }
+          vim.lsp.enable('basedpyright')
+        elseif server_name == "ruff" then
+          vim.lsp.config.ruff = {
+            cmd = { "ruff", "server", "--preview" },
+            filetypes = { "python" },
+            root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
+            single_file_support = true,
+            capabilities = capabilities,
+            on_attach = on_attach,
+            init_options = {
               settings = {
-                basedpyright = {
-                  analysis = {
-                    typeCheckingMode = "basic",
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                  },
-                },
-              },
-            }
-            vim.lsp.enable('basedpyright')
-          elseif server_name == "eslint" then
-            vim.lsp.config.eslint = {
-              filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
-              capabilities = capabilities,
-              on_attach = on_attach,
-            }
-            vim.lsp.enable('eslint')
-          elseif server_name == "ruff" then
-            vim.lsp.config.ruff = {
-              cmd = { "ruff", "server", "--preview" },
-              filetypes = { "python" },
-              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
-              single_file_support = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              init_options = {
-                settings = {
-                  -- Ruff settings here
-                  organizeImports = true,
-                  fixAll = true,
-                }
+                organizeImports = true,
+                fixAll = true,
               }
             }
-            vim.lsp.enable('ruff')
-          elseif server_name == "svelte" then
-            vim.lsp.config.svelte = {
-              filetypes = { "svelte" },
-              capabilities = capabilities,
-              on_attach = on_attach,
-            }
-            vim.lsp.enable('svelte')
-          end
-        end
-      else
-        -- Fallback: configure servers directly via vim.lsp.config if mason-lspconfig
-        -- fails to load or initialize.
-        for _, server_name in ipairs(servers) do
-          if server_name == "lua_ls" then
-            vim.lsp.config.lua_ls = {
-              filetypes = { "lua" },
-              on_attach = on_attach,
-              settings = { Lua = { diagnostics = { globals = { "vim" } } } },
-            }
-            vim.lsp.enable('lua_ls')
-          elseif server_name == "basedpyright" then
-            vim.lsp.config.basedpyright = {
-              cmd = { "basedpyright-langserver", "--stdio" },
-              filetypes = { "python" },
-              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
-              single_file_support = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              settings = {
-                basedpyright = {
-                  analysis = {
-                    typeCheckingMode = "basic",
-                    autoSearchPaths = true,
-                    useLibraryCodeForTypes = true,
-                  },
-                },
-              },
-            }
-            vim.lsp.enable('basedpyright')
-          elseif server_name == "eslint" then
-            vim.lsp.config.eslint = {
-              filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
-              capabilities = capabilities,
-              on_attach = on_attach,
-            }
-            vim.lsp.enable('eslint')
-          elseif server_name == "ruff" then
-            vim.lsp.config.ruff = {
-              cmd = { "ruff", "server", "--preview" },
-              filetypes = { "python" },
-              root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
-              single_file_support = true,
-              capabilities = capabilities,
-              on_attach = on_attach,
-              init_options = {
-                settings = {
-                  -- Ruff settings here
-                  organizeImports = true,
-                  fixAll = true,
-                }
-              }
-            }
-            vim.lsp.enable('ruff')
-          elseif server_name == "svelte" then
-            vim.lsp.config.svelte = {
-              filetypes = { "svelte" },
-              capabilities = capabilities,
-              on_attach = on_attach,
-            }
-            vim.lsp.enable('svelte')
-          end
+          }
+          vim.lsp.enable('ruff')
         end
       end
 
@@ -220,26 +136,6 @@ return {
       require("formatter").setup({
         logging = false,
         filetype = {
-          javascript = {
-            -- prettier
-            function()
-              return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-                stdin = true
-              }
-            end
-          },
-          typescript = {
-            -- prettier
-            function()
-              return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-                stdin = true
-              }
-            end
-          },
           lua = {
             -- stylua
             function()
@@ -250,42 +146,12 @@ return {
               }
             end
           },
-          svelte = {
-            -- prettier
+          python = {
+            -- black
             function()
               return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-                stdin = true
-              }
-            end
-          },
-          html = {
-            -- prettier
-            function()
-              return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-                stdin = true
-              }
-            end
-          },
-          css = {
-            -- prettier
-            function()
-              return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
-                stdin = true
-              }
-            end
-          },
-          json = {
-            -- prettier
-            function()
-              return {
-                exe = "prettier",
-                args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) },
+                exe = "black",
+                args = { "--quiet", "-" },
                 stdin = true
               }
             end
@@ -297,8 +163,6 @@ return {
       { "<leader>lf", "<cmd>FormatWrite<CR>", desc = "Format file" },
     },
     lazy = false,
-
-
   },
 
   {
