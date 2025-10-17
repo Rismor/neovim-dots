@@ -159,8 +159,5 @@ return {
       "MunifTanjim/nui.nvim",
     },
     opts = { lsp = { auto_attach = true } },
-    keys = {
-      { "<leader>ln", "<cmd>Navbuddy<cr>", desc = "Nav" },
-    }
   }
 }

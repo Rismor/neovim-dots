@@ -20,7 +20,6 @@ vim.api.nvim_set_keymap('n', '<leader>d', ':bd<CR>', {})
 
 -- Jumpto Directory keybinds --
 vim.api.nvim_set_keymap('n', '<leader>cdn', ':e ~/.config/nvim/init.lua<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>r', ':e ~/org/todo.org<CR>', { noremap = true })
 
 -- General Keybinds --
 vim.api.nvim_set_keymap('n', '<leader>o', ':setlocal spell! spelllang=en_us<CR>', {})
@@ -53,7 +52,8 @@ vim.api.nvim_set_keymap('n', '<leader>lv', ':lua require("telescope.builtin").ls
 vim.api.nvim_set_keymap('n', '<leader>lF', ':lua require("telescope.builtin").lsp_document_symbols({ symbols = {"function"} })<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':lua vim.lsp.buf.hover()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-p>', ':Telescope live_grep<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>st', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>lt', '<cmd>TodoTelescope<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ln', '<cmd>Navbuddy<cr>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
