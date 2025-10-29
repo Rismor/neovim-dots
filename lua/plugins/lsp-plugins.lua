@@ -89,7 +89,14 @@ return {
             root_dir = vim.fs.root(0, { "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", "Pipfile", ".git" }),
             single_file_support = true,
             capabilities = capabilities,
-            on_attach = on_attach,
+            on_attach = function(client, bufnr)
+              -- Disable ruff's diagnostics
+              client.server_capabilities.diagnosticProvider = false
+              -- Call the original on_attach if needed
+              if on_attach then
+                on_attach(client, bufnr)
+              end
+            end,
             init_options = {
               settings = {
                 organizeImports = true,
