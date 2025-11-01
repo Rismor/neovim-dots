@@ -185,11 +185,18 @@ return {
   },
 
   {
-    "Maan2003/lsp_lines.nvim",
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
+      -- Disable virtual_text since it's redundant due to lsp_lines
+      vim.diagnostic.config({
+        virtual_text = false,
+        virtual_lines = true,
+      })
     end,
-    vim.diagnostic.config({ virtual_text = true })
+    keys = {
+      { "<leader>lD", function() require("lsp_lines").toggle() end, desc = "Toggle lsp_lines" },
+    },
   },
 
 
