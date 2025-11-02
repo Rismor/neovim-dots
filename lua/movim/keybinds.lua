@@ -57,6 +57,12 @@ vim.api.nvim_set_keymap('n', '<leader>ln', '<cmd>Navbuddy<cr>', { noremap = true
 
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
+-- Fugitive Git Conflict Resolution Keybinds --
+vim.api.nvim_set_keymap('n', '<leader>gm', ':Gvdiffsplit!<CR>', { noremap = true, silent = true }) -- 3-way merge view
+vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //2<CR>', { noremap = true, silent = true })  -- get from left (HEAD/target)
+vim.api.nvim_set_keymap('n', '<leader>gl', ':diffget //3<CR>', { noremap = true, silent = true })  -- get from right (merge branch)
+vim.api.nvim_set_keymap('n', '<leader>gw', ':Gwrite<CR>', { noremap = true, silent = true })       -- stage resolved file
+
 
 vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap-forward-to)')
 
