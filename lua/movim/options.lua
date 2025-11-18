@@ -25,3 +25,9 @@ vim.opt.formatoptions  = "cqj"              -- Remove 't' to disable auto-wrappi
 vim.opt.wrap           = false               -- Disable visual line wrapping
 -- vim.opt.gcr           += "i:ver100-iCursor"
 
+-- UFO folding settings
+vim.opt.foldcolumn     = '0'                 -- Hide fold column (set to '1' to show)
+vim.opt.foldlevel      = 99                  -- Using ufo provider need a large value, feel free to decrease
+vim.opt.foldlevelstart = 99                  -- Start with all folds open
+vim.opt.foldenable     = true                -- Enable folding
+
