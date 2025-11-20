@@ -58,5 +58,78 @@ return {
     end
   },
   { "nvim-tree/nvim-web-devicons", lazy = true }, -- eye candy icons for nvim-tree
-{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} }
+  { 
+    "lukas-reineke/indent-blankline.nvim", 
+    main = "ibl", 
+    opts = {
+      exclude = {
+        filetypes = {
+          "dashboard",
+          "help",
+          "neo-tree",
+        }
+      }
+    }
+  },
+  
+  -- Dashboard
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      local dashboard = require("dashboard")
+      
+      dashboard.setup({
+        theme = "hyper",
+        config = {
+          week_header = {
+            enable = true,
+          },
+          shortcut = {
+            {
+              desc = "Main Project (iinvy)",
+              group = "DashboardDesc",
+              key = "i",
+              action = "cd ~/dev/iinvy | Telescope find_files",
+            },
+            {
+              desc = "Neovim Config",
+              group = "DashboardDesc",
+              key = "n",
+              action = "cd ~/.config/nvim | e ~/.config/nvim/init.lua",
+            },
+            {
+              desc = "Recent Files",
+              group = "DashboardDesc",
+              key = "r",
+              action = "Telescope oldfiles",
+            },
+            {
+              desc = "Find File (Spc F S)",
+              group = "DashboardDesc",
+              key = "f",
+              action = "Telescope find_files",
+            },
+            {
+              desc = "Quit",
+              group = "DashboardDesc",
+              key = "q",
+              action = "quit",
+            },
+          },
+          footer = function()
+            return { "", "🚀 Let's build something cool" }
+          end,
+        },
+      })
+      
+      -- Set colors to match VSCode dark theme
+      vim.api.nvim_set_hl(0, "DashboardHeader", { fg = "#569CD6" })  -- VSCode blue
+      vim.api.nvim_set_hl(0, "DashboardCenter", { fg = "#FFFFFF" })  -- White
+      vim.api.nvim_set_hl(0, "DashboardFooter", { fg = "#608B4E" })  -- VSCode green
+      vim.api.nvim_set_hl(0, "DashboardDesc", { fg = "#FFFFFF" })    -- White
+      vim.api.nvim_set_hl(0, "DashboardKey", { fg = "#C586C0" })     -- VSCode purple
+    end,
+  },
 }
