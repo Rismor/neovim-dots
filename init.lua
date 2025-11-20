@@ -22,6 +22,7 @@ require("lazy").setup("plugins")
 
 
 vim.cmd("source ~/.config/nvim/main.vim")
+require("movim.options")
 require("movim.keybinds")
 
 
