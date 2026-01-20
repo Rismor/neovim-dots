@@ -141,4 +141,16 @@ end
 -- Set the keybinding for copying file path
 vim.api.nvim_set_keymap('n', '<leader>cp', ':lua copy_file_path()<CR>', { noremap = true, silent = true })
 
--- Set the keybind for opening 
+-- Set the keybind for opening
+
+-- Neovide Font Scaling --
+if vim.g.neovide then
+  vim.g.neovide_scale_factor = 1.0
+
+  local function change_scale_factor(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+
+  vim.keymap.set("n", "<C-=>", function() change_scale_factor(1.1) end, { noremap = true, silent = true, desc = "Neovide: Increase font size" })
+  vim.keymap.set("n", "<C-->", function() change_scale_factor(1/1.1) end, { noremap = true, silent = true, desc = "Neovide: Decrease font size" })
+end
