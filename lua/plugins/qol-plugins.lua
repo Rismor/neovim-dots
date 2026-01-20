@@ -198,8 +198,8 @@ return {
       vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
       vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith)
       
-      -- Tab to toggle fold under cursor
-      vim.keymap.set('n', '<Tab>', 'za', { desc = 'Toggle fold under cursor' })
+      -- Tab to toggle fold under cursor (disabled - conflicts with C-i jump forward)
+      -- vim.keymap.set('n', '<Tab>', 'za', { desc = 'Toggle fold under cursor' })
       
       -- Peek fold with K in normal mode, fallback to LSP hover if not on a fold
       vim.keymap.set('n', 'K', function()
