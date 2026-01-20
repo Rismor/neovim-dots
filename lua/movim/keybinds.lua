@@ -58,6 +58,11 @@ vim.api.nvim_set_keymap('n', '<leader>ln', '<cmd>Navbuddy<cr>', { noremap = true
 
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
+-- Fuzzy search current buffer with /
+vim.keymap.set('n', '/', function()
+  require('telescope.builtin').current_buffer_fuzzy_find({ previewer = false })
+end, { noremap = true, silent = true })
+
 -- Fugitive Git Conflict Resolution Keybinds --
 vim.api.nvim_set_keymap('n', '<leader>gm', ':Gvdiffsplit!<CR>', { noremap = true, silent = true }) -- 3-way merge view
 vim.api.nvim_set_keymap('n', '<leader>gh', ':diffget //2<CR>', { noremap = true, silent = true })  -- get from left (HEAD/target)
