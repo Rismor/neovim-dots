@@ -60,7 +60,45 @@ vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, 
 
 -- Fuzzy search current buffer with /
 vim.keymap.set('n', '/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find({ previewer = false })
+  require('telescope.builtin').current_buffer_fuzzy_find({
+    previewer = false,
+    sorting_strategy = "ascending",
+    attach_mappings = function(_, map)
+      local actions = require('telescope.actions')
+      local action_state = require('telescope.actions.state')
+      
+      -- Override default select to also set the search register
+      map('i', '<CR>', function(prompt_bufnr)
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        if entry then
+          -- Jump to the line
+          vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
+          -- Set the search register so n/N work
+          local prompt = action_state.get_current_line()
+          if prompt and prompt ~= '' then
+            vim.fn.setreg('/', prompt)
+            vim.opt.hlsearch = true
+          end
+        end
+      end)
+      
+      map('n', '<CR>', function(prompt_bufnr)
+        local entry = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        if entry then
+          vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
+          local prompt = action_state.get_current_line()
+          if prompt and prompt ~= '' then
+            vim.fn.setreg('/', prompt)
+            vim.opt.hlsearch = true
+          end
+        end
+      end)
+      
+      return true
+    end,
+  })
 end, { noremap = true, silent = true })
 
 -- Fugitive Git Conflict Resolution Keybinds --
