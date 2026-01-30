@@ -79,6 +79,71 @@ _G.fuzzy_qf_status = function()
   return string.format("Fuzzy / %d/%d", info.idx, info.size)
 end
 
+local function _get_fuzzy_qf_items()
+  if not vim.g.fuzzy_qf_id then
+    return nil
+  end
+
+  local info = vim.fn.getqflist({ id = vim.g.fuzzy_qf_id, items = 1 })
+  if not info or info.id ~= vim.g.fuzzy_qf_id or not info.items then
+    return nil
+  end
+  return info.items
+end
+
+local function _fuzzy_results_lines()
+  local items = _get_fuzzy_qf_items()
+  if not items or #items == 0 then
+    return nil
+  end
+
+  local lines = {}
+  for _, item in ipairs(items) do
+    local text = item.text
+    if not text or text == "" then
+      local ok, buf_lines = pcall(vim.api.nvim_buf_get_lines, item.bufnr, item.lnum - 1, item.lnum, false)
+      if ok and buf_lines and buf_lines[1] then
+        text = buf_lines[1]
+      else
+        text = ""
+      end
+    end
+    table.insert(lines, text)
+  end
+
+  return lines
+end
+
+local function _ensure_fuzzy_results_buf()
+  local bufnr = vim.g.fuzzy_results_bufnr
+  if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
+    return bufnr
+  end
+
+  bufnr = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_buf_set_name(bufnr, "Fuzzy / Results")
+  vim.bo[bufnr].buftype = "nofile"
+  vim.bo[bufnr].bufhidden = "wipe"
+  vim.bo[bufnr].swapfile = false
+  vim.bo[bufnr].modifiable = true
+  vim.g.fuzzy_results_bufnr = bufnr
+  return bufnr
+end
+
+local function _update_fuzzy_results_buffer()
+  local lines = _fuzzy_results_lines()
+  if not lines then
+    return
+  end
+
+  local bufnr = _ensure_fuzzy_results_buf()
+  vim.bo[bufnr].modifiable = true
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+  vim.bo[bufnr].modifiable = false
+
+  vim.fn.setreg('t', table.concat(lines, "\n"), 'l')
+end
+
 vim.keymap.set('n', '/', function()
   require('telescope.builtin').current_buffer_fuzzy_find({
     previewer = false,
@@ -126,6 +191,8 @@ vim.keymap.set('n', '/', function()
           end
         end
 
+        _update_fuzzy_results_buffer()
+
         -- Jump to the line
         vim.api.nvim_win_set_cursor(0, { entry.lnum, entry.col or 0 })
       end
@@ -138,6 +205,20 @@ vim.keymap.set('n', '/', function()
     end,
   })
 end, { noremap = true, silent = true })
+
+vim.api.nvim_create_user_command("FuzzyResults", function()
+  _update_fuzzy_results_buffer()
+  local bufnr = vim.g.fuzzy_results_bufnr
+  if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
+    vim.notify("No fuzzy results yet", vim.log.levels.INFO)
+    return
+  end
+  vim.cmd("split")
+  vim.api.nvim_win_set_buf(0, bufnr)
+end, {})
+
+-- Paste fuzzy results (register t) with <leader>p
+vim.keymap.set('n', '<leader>p', '"tp', { noremap = true, silent = true })
 
 -- Use n/N to move through Telescope fuzzy results when available
 vim.keymap.set('n', 'n', function()
