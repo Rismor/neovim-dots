@@ -41,7 +41,17 @@ return {
             }
           },
           lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
+          lualine_y = {
+            {
+              function()
+                if _G.fuzzy_qf_status then
+                  return _G.fuzzy_qf_status()
+                end
+                return ""
+              end
+            },
+            "progress"
+          },
           lualine_z = { "location" },
         },
         inactive_sections = {

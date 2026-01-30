@@ -59,6 +59,26 @@ vim.api.nvim_set_keymap('n', '<leader>ln', '<cmd>Navbuddy<cr>', { noremap = true
 vim.api.nvim_set_keymap('n', '<leader>gc', ':Git commit<CR>', { noremap = true, silent = true })
 
 -- Fuzzy search current buffer with /
+local function _fuzzy_qf_info()
+  if not vim.g.fuzzy_qf_id then
+    return nil
+  end
+
+  local info = vim.fn.getqflist({ id = 0, size = 0, idx = 0 })
+  if info.id == vim.g.fuzzy_qf_id and info.size > 0 then
+    return info
+  end
+  return nil
+end
+
+_G.fuzzy_qf_status = function()
+  local info = _fuzzy_qf_info()
+  if not info then
+    return ""
+  end
+  return string.format("Fuzzy / %d/%d", info.idx, info.size)
+end
+
 vim.keymap.set('n', '/', function()
   require('telescope.builtin').current_buffer_fuzzy_find({
     previewer = false,
@@ -66,39 +86,80 @@ vim.keymap.set('n', '/', function()
     attach_mappings = function(_, map)
       local actions = require('telescope.actions')
       local action_state = require('telescope.actions.state')
-      
+
+      local function safe_close(prompt_bufnr)
+        local state = require("telescope.state")
+        local status = state.get_status(prompt_bufnr)
+        if status and status.picker then
+          pcall(actions.close, prompt_bufnr)
+          return
+        end
+        if vim.api.nvim_buf_is_valid(prompt_bufnr) then
+          pcall(vim.api.nvim_buf_delete, prompt_bufnr, { force = true })
+        end
+      end
+
+      local function select_and_set_search(prompt_bufnr)
+        local entry = action_state.get_selected_entry()
+        if not entry then
+          safe_close(prompt_bufnr)
+          return
+        end
+
+        -- Populate quickfix with all results (exactly what Telescope shows)
+        actions.send_to_qflist(prompt_bufnr)
+        safe_close(prompt_bufnr)
+
+        local qf_list = vim.fn.getqflist()
+        if #qf_list > 0 then
+          local target_idx = 1
+          for i, item in ipairs(qf_list) do
+            if item.lnum == entry.lnum and (entry.col == nil or item.col == entry.col) then
+              target_idx = i
+              break
+            end
+          end
+          vim.fn.setqflist({}, 'r', { items = qf_list, title = "Fuzzy /", idx = target_idx })
+          local qf_info = vim.fn.getqflist({ id = 0 })
+          if qf_info and qf_info.id then
+            vim.g.fuzzy_qf_id = qf_info.id
+          end
+        end
+
+        -- Jump to the line
+        vim.api.nvim_win_set_cursor(0, { entry.lnum, entry.col or 0 })
+      end
+
       -- Override default select to also set the search register
-      map('i', '<CR>', function(prompt_bufnr)
-        local entry = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        if entry then
-          -- Jump to the line
-          vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
-          -- Set the search register so n/N work
-          local prompt = action_state.get_current_line()
-          if prompt and prompt ~= '' then
-            vim.fn.setreg('/', prompt)
-            vim.opt.hlsearch = true
-          end
-        end
-      end)
-      
-      map('n', '<CR>', function(prompt_bufnr)
-        local entry = action_state.get_selected_entry()
-        actions.close(prompt_bufnr)
-        if entry then
-          vim.api.nvim_win_set_cursor(0, { entry.lnum, 0 })
-          local prompt = action_state.get_current_line()
-          if prompt and prompt ~= '' then
-            vim.fn.setreg('/', prompt)
-            vim.opt.hlsearch = true
-          end
-        end
-      end)
-      
+      map('i', '<CR>', select_and_set_search)
+      map('n', '<CR>', select_and_set_search)
+
       return true
     end,
   })
+end, { noremap = true, silent = true })
+
+-- Use n/N to move through Telescope fuzzy results when available
+vim.keymap.set('n', 'n', function()
+  if _fuzzy_qf_info() then
+    local ok = pcall(vim.cmd, 'cnext')
+    if not ok then
+      pcall(vim.cmd, 'normal! n')
+    end
+  else
+    pcall(vim.cmd, 'normal! n')
+  end
+end, { noremap = true, silent = true })
+
+vim.keymap.set('n', 'N', function()
+  if _fuzzy_qf_info() then
+    local ok = pcall(vim.cmd, 'cprev')
+    if not ok then
+      pcall(vim.cmd, 'normal! N')
+    end
+  else
+    pcall(vim.cmd, 'normal! N')
+  end
 end, { noremap = true, silent = true })
 
 -- Fugitive Git Conflict Resolution Keybinds --
